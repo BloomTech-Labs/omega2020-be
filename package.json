@@ -1,0 +1,27 @@
+{
+  "name": "omega2020-be",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Lambda-School-Labs/omega2020-be.git",
+  "author": "<crsullivan@protonmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "server": "nodemon server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.1",
+    "gitignore": "^0.6.0",
+    "graphql": "^14.5.8",
+    "graphql-tools": "^4.0.6",
+    "jwks-rsa": "^1.6.0",
+    "knex": "^0.20.4",
+    "node": "^13.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
