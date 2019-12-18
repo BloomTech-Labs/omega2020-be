@@ -5,6 +5,7 @@ const graphqlExpress = require('express-graphql')
 const schema = require('./data/user-schema')
 const jwt = require('express-jwt')
 var jwks = require('jwks-rsa')
+const dummySchema = require('./data/dummy-schema.js')
 
 
 require('dotenv').config()
@@ -36,7 +37,8 @@ app.use(
   bodyParser.json(),
   auth,
   graphqlExpress(req => ({
-    schema,
+    schema: dummySchema,
+    graphiql: true,
     context: {
       user: req.user
     }
