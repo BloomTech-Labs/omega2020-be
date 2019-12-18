@@ -1,19 +1,17 @@
-
 const { makeExecutableSchema } = require('graphql-tools')
 const resolvers = require('./resolvers')
 
 const typeDefs = `
-type Todo {
-    userId: ID!
-    title: String!
+type Setting {
+    id: Int
+    user_id: Int
+    theme: 
   }
 
   type Query {
-    myTodos: [Todo]
   }
 
   type Mutation {
-    addTodo (title: String!): Todo
   }
 `
 
