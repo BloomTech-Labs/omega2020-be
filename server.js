@@ -21,7 +21,7 @@ const auth = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `${process.env.AUTH0_ISSUER}.well-known/jwks.json`
+    jwksUri: `${process.env.AUTH0_ISSUER}/.well-known/jwks.json`
   }),
   audience: process.env.AUTH0_AUDIENCE,
   issuer: process.env.AUTH0_ISSUER,
