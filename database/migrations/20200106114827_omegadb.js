@@ -40,10 +40,15 @@ exports.up = function(knex) {
         t.boolean('sounds').notNullable();
         t.boolean('notes').notNullable();
     })
+    .createTable('puzzles', t => {
+        t.increments();
+        t.string('data', 128).notNullable();
+    })
 };
 
 exports.down = function(knex) {
     return knex.schema
+        .dropTableIfExists('puzzles')
         .dropTableIfExists('settings')
         .dropTableIfExists('users')
         .dropTableIfExists('user_puzzles')
