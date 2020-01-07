@@ -1,4 +1,3 @@
-
 const express = require('express');
 const configureMiddleware = require('./configure-middleware')
 
