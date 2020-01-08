@@ -11,3 +11,22 @@ router.get('/', (req, res) => {
     .catch(err => res.send(err))
 })
 module.exports = router;
+
+router.put('/:id', (req, res) => {
+    const changes = req.body;
+    Puzzles
+    .editPuzzle(req.params.id, changes)
+      .then(puzzle => {
+        if (puzzle) {
+          res.status(200).json(puzzle);
+        } else {
+          res.status(404).json({ message: 'The puzzle could not be found' });
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        res.status(500).json({
+          message: 'Error updating the puzzle',
+        });
+      });
+  });
