@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
     })
     .catch(err => res.send(err))
 })
-module.exports = router;
 
 router.put('/:id', (req, res) => {
     const changes = req.body;
@@ -30,3 +29,5 @@ router.put('/:id', (req, res) => {
         });
       });
   });
+
+module.exports = router;
