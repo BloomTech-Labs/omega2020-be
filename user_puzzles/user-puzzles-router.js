@@ -11,15 +11,30 @@ router.get('/', restricted, (req, res) => {
     .catch(err => res.send(err))
 })
 
-router.post('/:id', restricted, (req, res) => {
-    const id = req.params.puzzleId
+router.post('/:userId/:puzzleId', restricted, (req, res) => {
+    const { userId, puzzleId } = req.params
+    const email = req.decodedJwt.email
     const puzzle = req.body
     UserPuzzles
-    .savePuzzle(puzzle, id)
+    .savePuzzle(puzzle, { userId, puzzleId }, email)
     .then(puzzle => {
         res.json(puzzle)
     })
     .catch(err => res.send(err))
 })
+
+//preparing an endpoint to resave an existing saved puzzle
+
+// router.post('/:userId/:puzzleId', restricted, (req, res) => {
+//     const { userId, puzzleId } = req.params
+//     const email = req.decodedJwt.email
+//     const puzzle = req.body
+//     UserPuzzles
+//     .savePuzzle(puzzle, { userId, puzzleId }, email)
+//     .then(puzzle => {
+//         res.json(puzzle)
+//     })
+//     .catch(err => res.send(err))
+// })
 
 module.exports = router;
