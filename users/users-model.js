@@ -1,5 +1,4 @@
   const db = require('../database/dbconfig.js');
-  const Users = require('../users/users-model.js');
 
 module.exports = {
     add,
