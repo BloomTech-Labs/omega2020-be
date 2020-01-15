@@ -48,16 +48,18 @@ module.exports = {
     }
   },
 
+
   production: {
     client: 'pg',
-    connection: {
-      host: 'ec2-174-129-33-230.compute-1.amazonaws.com',
-      port: '5432',
-      user: 'tuuiardyaqjvcr',
-      password: '952f064afac9587e45e0cdb54954944058570e8b36c15147e9a5e0b5585a0135',
-      database: 'dbt402cmh54idu',
-      ssl: true
-   },
+    connection: process.env.DATABASE_URL,
+  //   connection: {
+  //     host: 'ec2-174-129-33-230.compute-1.amazonaws.com',
+  //     port: '5432',
+  //     user: 'tuuiardyaqjvcr',
+  //     password: '952f064afac9587e45e0cdb54954944058570e8b36c15147e9a5e0b5585a0135',
+  //     database: 'dbt402cmh54idu',
+  //     ssl: true
+  //  },
     migrations: {
       directory: './database/migrations'
   },
