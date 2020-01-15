@@ -8,10 +8,13 @@ module.exports = {
 
 async function add(user) {
   if (process.env.DB_ENV === 'production') {
-    console.log('production')
-    return db('users').insert(user).returning('id')
-    .then(id=> findById(id))
+    return db.insert(user).into('users').returning('id')
+    .then(ids=> {
+      console.log(ids[0]);
+      return findById(ids[0]);
+    })
     .catch(error => {
+      console.log(error);
       throw error;
     });
   } else {
@@ -19,11 +22,12 @@ async function add(user) {
     return findById(id)
   }
 }
+
 function findBy(email) {
     return db('users').where(email);
   }
 function findById(id) {
     return db('users')
-    .where({'id': id})
+    .where({id})
     .first();
   }
