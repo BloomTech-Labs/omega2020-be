@@ -12,6 +12,7 @@ module.exports = {
 // }
 async function add(user) {
   if (process.env.DB_ENV === 'production') {
+    console.log(db.insert(user).into('users').returning('id'), "add method")
     return db.insert(user).into('users').returning('id')
     .then(ids=> {
       console.log(ids[0]);
