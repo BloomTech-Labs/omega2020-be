@@ -20,6 +20,7 @@ async function add(user) {
     });
   } else {
     const [id] = await db('users').insert(user)
+    console.log()
     return findById(id)
   }
 }
