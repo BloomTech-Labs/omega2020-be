@@ -13,7 +13,7 @@ configureMiddleware(server);
 server.use('/puzzles', puzzleRouter)
 server.use('/auth', authRouter)
 server.use('/user-puzzles', userPuzzleRouter)
-server.use('/data-science', dataSciencePuzzlesRouter)
+server.use('/puzzle', dataSciencePuzzlesRouter)
 
 server.get('/', (req, res) => {
     res.send("It's alive!");
