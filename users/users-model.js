@@ -18,6 +18,7 @@ async function add(user) {
       throw error;
     });
   } else {
+    console.log(user)
     const [id] = await db('users').insert(user)
     return findById(id)
   }
@@ -29,7 +30,11 @@ function findBy(email) {
 function findById(id) {
     return db('users')
     .where({id})
-    .first();
+    .first()
+    .catch(error=> {
+      console.log("Error finding by id");
+      throw error;
+    });
   }
 
 

@@ -6,7 +6,10 @@ const Users = require('../users/users-model.js')
 const jwt = require('jsonwebtoken')
 
 router.post('/register', (req, res) => {
-    let user = req.body;
+  console.log("Register ")
+  // console.log(req)
+
+  let user = req.body;
 
     const hash = bcrypt.hashSync(user.password, 10);
     user.password = hash;
@@ -16,6 +19,8 @@ router.post('/register', (req, res) => {
         res.status(201).json(saved);
       })
       .catch(error => {
+
+        console.log(error)
         res.status(500).json(error);
       });
   });
@@ -30,6 +35,7 @@ router.post('/register', (req, res) => {
           const token = getJwtToken(user.email);
           res.status(200).json({
             message: `Welcome ${user.email}!`,
+            userId: user.id,
             token
           });
         } else {

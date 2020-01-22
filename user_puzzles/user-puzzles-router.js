@@ -23,6 +23,15 @@ router.post('/:userId/:puzzleId', restricted, (req, res) => {
     .catch(err => res.send(err))
 })
 
+router.post('/:userId/puzzles', restricted, (req, res) => {
+    const { userId } = req.params
+    UserPuzzles
+    .savePuzzle(puzzle, { userId, puzzleId }, email)
+    .then(puzzle => {
+        res.json(puzzle)
+    })
+    .catch(err => res.send(err))
+})
 //preparing an endpoint to resave an existing saved puzzle
 
 // router.post('/:userId/:puzzleId', restricted, (req, res) => {
