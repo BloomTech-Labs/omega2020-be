@@ -33,9 +33,11 @@ router.post('/register', (req, res) => {
       .then(user => {
         if (user && bcrypt.compareSync(password, user.password)) {
           const token = getJwtToken(user.email);
+          console.log("USERID", user.id);
           res.status(200).json({
             message: `Welcome ${user.email}!`,
             userId: user.id,
+    
             token
           });
         } else {
