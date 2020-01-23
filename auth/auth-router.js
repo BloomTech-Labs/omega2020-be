@@ -32,12 +32,10 @@ router.post('/register', (req, res) => {
       .first()
       .then(user => {
         if (user && bcrypt.compareSync(password, user.password)) {
-          const token = getJwtToken(user.email);
+          const token = getJwtToken(user.email, user.id);
           console.log("USERID", user.id);
           res.status(200).json({
             message: `Welcome ${user.email}!`,
-            userId: user.id,
-    
             token
           });
         } else {
@@ -49,9 +47,10 @@ router.post('/register', (req, res) => {
       });
   });
 
-function getJwtToken(email) {
+function getJwtToken(email, userId) {
     const payload = {
-      email
+      email,
+      userId
     }
     const secret = process.env.JWT_SECRET || 'KEEP IT SECRET KEEP IT SAFE'
     const options = {
