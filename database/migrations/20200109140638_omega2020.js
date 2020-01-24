@@ -25,10 +25,12 @@ exports.up = function(knex) {
         t
             .integer('puzzle_id')
             .unsigned()
-            // .references('id')
-            // .inTable('puzzles')
-            // .onDelete('RESTRICT')
-            // .onUpdate('CASCADE')
+            .references('id')
+            .inTable('puzzles')
+            .onDelete('RESTRICT')
+            .onUpdate('CASCADE')
+
+        t.integer('puzzleDs')
         })
             // .createTable('settings', t => {
                 //     t.increments();

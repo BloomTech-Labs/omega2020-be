@@ -19,7 +19,7 @@ async function savePuzzle(puzzle, { userId, puzzleId }, email) {
         .insert({
             ...puzzle,
             user_id: userId,
-            puzzle_id: puzzleId
+            puzzleDs: puzzleId
         }).catch(e => {
             console.log(e);
             throw e;
