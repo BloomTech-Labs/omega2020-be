@@ -5,7 +5,7 @@ const connectionString = 'postgres://postgres:omega2020database@omega2020.cbydc0
 const pool = new Pool({
   connectionString: connectionString,
 })
-pool.query("SELECT sudoku, solution, level, id FROM puzzle_table WHERE id='5029' LIMIT 1;", (err, res) => {
+pool.query("SELECT sudoku, solution, level, id FROM puzzle_table WHERE level='Gentle' ORDER BY RANDOM() LIMIT 1;", (err, res) => {
   console.log(res.rows[0])
 })
 const client = new Client({
@@ -27,6 +27,17 @@ router.get('/', (req, res, next) => {
       })
 })
 
+router.get('/:id', (req, res, next) => {
+  const { id } = req.params;
+  pool.query(`SELECT sudoku, solution, level, id FROM puzzle_table where id = ${id};`,
+              (q_err, q_res ) => {
+                  res.json(q_res.rows[0])
+                  if (q_err) {
+                    res.send(q_err)
+                  }
+      })
+})
+
 router.get('/diabolical', (req, res, next) => {
   pool.query("SELECT sudoku, solution, level, id FROM puzzle_table WHERE level='Diabolical' ORDER BY RANDOM() LIMIT 1;",
               (q_err, q_res ) => {
@@ -36,6 +47,7 @@ router.get('/diabolical', (req, res, next) => {
                   }
       })
 })
+
 router.get('/tough', (req, res, next) => {
   pool.query("SELECT sudoku, solution, level, id FROM puzzle_table WHERE level='Tough' ORDER BY RANDOM() LIMIT 1;",
               (q_err, q_res ) => {
