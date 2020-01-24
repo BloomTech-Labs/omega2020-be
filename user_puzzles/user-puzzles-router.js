@@ -14,6 +14,7 @@ router.get('/', restricted, (req, res) => {
     .catch(err => res.send(err))
 })
 
+
 router.post('/:puzzleId', restricted, (req, res) => {
     const { puzzleId } = req.params;
     const email = req.decodedJwt.email;
@@ -23,6 +24,7 @@ router.post('/:puzzleId', restricted, (req, res) => {
     .savePuzzle(puzzle, { userId, puzzleId }, email)
     .then(puzzle => {
         res.json(puzzle)
+        console.log(email)
     })
     .catch(err => res.send(err))
 })
@@ -49,5 +51,6 @@ router.post('/:puzzleId', restricted, (req, res) => {
 //     })
 //     .catch(err => res.send(err))
 // })
+
 
 module.exports = router;

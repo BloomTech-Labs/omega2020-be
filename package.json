@@ -6,18 +6,26 @@
   "author": "<crsullivan@protonmail.com>",
   "license": "MIT",
   "scripts": {
+
     "server": "DB_ENV=development nodemon index.js",
+
+    "server": "cross-env DB_ENV=production nodemon index.js",
+
     "test": "cross-env DB_ENV=testing jest --watch",
     "start": "node index.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "circular-json": "^0.5.9",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.6",
+    "mysql": "^2.17.1",
     "node": "^13.5.0",
     "pg": "^7.17.0",
     "sqlite3": "^4.1.1"

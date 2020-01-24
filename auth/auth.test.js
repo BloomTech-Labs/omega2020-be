@@ -11,17 +11,17 @@ describe('add()', function() {
         await db('users').truncate();
     })
     it('should insert a user', async function() {
-        await add({password: 'bendoe', email: 'ben@doe.com'});
+        await add({password: 'bendoe', email: 'ben123@doe.com'});
         const users = await db('users');
         expect(users).toHaveLength(1);
     })
     it('should return provided user', async function() {
-        user = await add({password: 'johndoe', email: 'john@doe.com'});
-        expect(user.email).toBe('john@doe.com');
+        user = await add({password: 'johndoe', email: 'john123@doe.com'});
+        expect(user.email).toBe('john123@doe.com');
         expect(user.id).toBeDefined();
 
-    });
-});
+    })
+})
 
 describe('findBy()', function() {
     beforeEach(async () => {
@@ -38,4 +38,4 @@ describe('findBy()', function() {
         user = await Users.findBy({email: 'john@doe.com'})
         expect(user).toMatchObject([original]);
     })
-});
+})
