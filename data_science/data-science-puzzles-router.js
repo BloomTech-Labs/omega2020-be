@@ -5,7 +5,7 @@ const connectionString = 'postgres://postgres:omega2020database@omega2020.cbydc0
 const pool = new Pool({
   connectionString: connectionString,
 })
-pool.query("SELECT sudoku, solution, level, id FROM puzzle_table WHERE level='Gentle' ORDER BY RANDOM() LIMIT 1;", (err, res) => {
+pool.query("SELECT sudoku, solution, level, id FROM puzzle_table WHERE level='Diabolical' ORDER BY RANDOM() LIMIT 1;", (err, res) => {
   console.log(res.rows[0])
 })
 const client = new Client({
