@@ -28,7 +28,7 @@ async function savePuzzle(puzzle, email, puzzleId) {
         .insert({
             data: puzzle,
             email: email,
-            puzzleDs: puzzleId
+            "puzzleDs": puzzleId
             
         })
         console.log("TEST", test)
