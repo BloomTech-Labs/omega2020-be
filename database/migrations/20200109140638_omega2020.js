@@ -31,6 +31,7 @@ exports.up = function(knex) {
             .onUpdate('CASCADE')
 
         t.integer('puzzleDs')
+        t.string('email', 128)
         })
             // .createTable('settings', t => {
                 //     t.increments();

@@ -10,20 +10,22 @@ function findPuzzles(userId) {
     return db('user_puzzles').where({'user_id': userId});
 }
 
-async function savePuzzle(puzzle, { userId, puzzleId }, email) {
+async function savePuzzle(puzzle, { email, puzzleId }) {
     console.log(puzzle)
-    console.log(userId)
+    console.log(email)
     console.log(puzzleId)
-    
-    return await db('user_puzzles')
+
+    const test = await db('user_puzzles')
         .insert({
             ...puzzle,
-            user_id: userId,
+            email: email,
             puzzleDs: puzzleId
         }).catch(e => {
             console.log(e);
             throw e;
         })
+        // console.log("TEST", test)
+        
     // async function verify() {
     //  const results = await db('user_puzzles as p')
     // .join('puzzles as z', 'z.id', 'p.puzzle_id')
