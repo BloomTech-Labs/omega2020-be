@@ -3,44 +3,52 @@ const db = require('../database/dbconfig')
 module.exports = {
     findPuzzles,
     savePuzzle,
-    findUserPuzzleByID
+    findUserPuzzleByID,
+    getUserPuzzles
 };
 
 function findPuzzles(userId) {
     return db('user_puzzles').where({'user_id': userId});
 }
 
-async function savePuzzle(puzzle, { email, puzzleId }) {
+function getUserPuzzles() {
+    console.log("here")
+    const thang = db('user_puzzles');
+    console.log(process.env)
+        console.log("THANG1", thang)
+        return thang
+}
+
+async function savePuzzle(puzzle, email, puzzleId) {
     console.log(puzzle)
     console.log(email)
     console.log(puzzleId)
 
     const test = await db('user_puzzles')
         .insert({
-            ...puzzle,
+            data: puzzle,
             email: email,
             puzzleDs: puzzleId
-        }).catch(e => {
+            
+        })
+        console.log("TEST", test)
+        .catch(e => {
             console.log(e);
             throw e;
         })
-        // console.log("TEST", test)
-        
     // async function verify() {
     //  const results = await db('user_puzzles as p')
     // .join('puzzles as z', 'z.id', 'p.puzzle_id')
     // .join('users as u', 'u.id', 'p.user_id')
     // .select('p.*', 'u.email', 'z.id', 'p.id')
-    // .where({ 'u.email': email })
-    // .where({ 'z.id': puzzleId })
-    // .where({ 'u.id': userId })
-    //     await db('user_puzzles')
+    //     const test2 = await db('user_puzzles')
     //     .insert({
-    //         ...puzzle,
-    //         user_id: userId,
-    //         puzzle_id: puzzleId
+    //         data: puzzle,
+    //         email: email,
+    //         puzzleDs: puzzleId
     //     })
-    //     return "Successfully added puzzle"
+    //     console.log("TEST2", test2)
+        // return "Successfully added puzzle"
         
     // }
     // return await verify()

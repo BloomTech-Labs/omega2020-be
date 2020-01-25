@@ -2,26 +2,35 @@ const router = require('express').Router();
 const restricted = require('../auth/restricted-middleware.js')
 const UserPuzzles = require('./user-puzzles-model')
 
-router.get('/', restricted, (req, res) => {
-    const userId = req.decodedJwt.userId;
-    UserPuzzles
-    .findPuzzles(userId)
-    .then(puzzles => {
-        console.log('User puzzles')
-        console.log(puzzles);
-        res.json(puzzles)
-    })
-    .catch(err => res.send(err))
-})
+router.get("/", async (req, res) => {
+    // console.log("REQ1", req)
+    try {
+    //   console.log("REQ2", req)
+      const allUsers = await UserPuzzles.getUserPuzzles();
+            // console.log("REQ2", req)
 
+      console.log("ALL USERS", allUsers)
+      res.status(200).json(allUsers);
+    // console.log("REQ2", req)
+
+      
+    } catch (err) {
+      res.status(500).json({ msg: "erraaaaa"  });
+    }
+
+})
 
 router.post('/:puzzleId', restricted, (req, res) => {
     const { puzzleId } = req.params;
     const email = req.decodedJwt.email;
     const puzzle = req.body;
+    console.log("ROUTER GUY", puzzle)
+    console.log("ROUTER GUY2", email)
+    console.log("ROUTER GUY3", puzzleId)
     UserPuzzles
-    .savePuzzle(puzzle, { email, puzzleId })
+    .savePuzzle(puzzle, email, puzzleId)
     .then(puzzle => {
+        console.log("THEN PUZZ", puzzle)
         res.json(puzzle)
         console.log(email)
     })
