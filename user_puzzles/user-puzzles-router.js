@@ -18,10 +18,9 @@ router.get('/', restricted, (req, res) => {
 router.post('/:puzzleId', restricted, (req, res) => {
     const { puzzleId } = req.params;
     const email = req.decodedJwt.email;
-    const userId = req.decodedJwt.userId;
     const puzzle = req.body;
     UserPuzzles
-    .savePuzzle(puzzle, { userId, puzzleId }, email)
+    .savePuzzle(puzzle, { email, puzzleId })
     .then(puzzle => {
         res.json(puzzle)
         console.log(email)
