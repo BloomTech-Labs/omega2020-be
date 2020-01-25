@@ -6,7 +6,7 @@
   "author": "<crsullivan@protonmail.com>",
   "license": "MIT",
   "scripts": {
-    "server": "cross-env DB_ENV=production nodemon index.js",
+    "server": "cross-env DB_ENV=development nodemon index.js",
     "test": "cross-env DB_ENV=testing jest --watch",
     "start": "node index.js"
   },
@@ -23,13 +23,13 @@
     "knex": "^0.20.6",
     "mysql": "^2.17.1",
     "node": "^13.5.0",
-    "pg": "^7.17.0"
+    "pg": "^7.17.0",
+    "sqlite3": "^4.1.1"
   },
   "devDependencies": {
     "cross-env": "^6.0.3",
     "jest": "^24.9.0",
     "nodemon": "^2.0.2",
-    "sqlite3": "^4.1.1",
     "supertest": "^4.0.2"
   }
 }
