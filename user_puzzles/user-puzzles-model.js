@@ -13,7 +13,7 @@ function findPuzzles(userId) {
 
 function getUserPuzzles() {
     console.log("here")
-    const thang = db('user_puzzles').where({'data': "4"});
+    const thang = db('user_puzzles').where({'difficulty': "4"});
     console.log(process.env)
         console.log("THANG1", thang)
         return thang
