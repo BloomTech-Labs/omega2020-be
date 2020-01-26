@@ -12,11 +12,11 @@ function findPuzzles(userId) {
 }
 
 function getUserPuzzles() {
-    console.log("here")
+    console.log("XXXXXXXXXX")
     const thang = db('user_puzzles').where({'data': "4"});
     console.log(process.env)
-        console.log("THANG1", thang)
-        return thang
+    console.log("THANG1", thang)
+    return thang
 }
 
 async function savePuzzle(puzzle, email, puzzleId) {
@@ -26,7 +26,7 @@ async function savePuzzle(puzzle, email, puzzleId) {
 
     const test = await db('user_puzzles')
         .insert({
-            data: puzzle,
+            data: puzzleStr,
             email: email,
             puzzleDs: puzzleId
             
