@@ -7,8 +7,8 @@ module.exports = {
     getUserPuzzles
 };
 
-function findPuzzles(userId) {
-    return db('user_puzzles').where({'user_id': userId});
+function findPuzzles(email) {
+    return db('user_puzzles').where({'email': email});
 }
 
 function getUserPuzzles() {

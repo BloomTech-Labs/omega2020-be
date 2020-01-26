@@ -2,23 +2,36 @@ const router = require('express').Router();
 const restricted = require('../auth/restricted-middleware.js')
 const UserPuzzles = require('./user-puzzles-model')
 
-router.get("/", async (req, res) => {
-    // console.log("REQ1", req)
-    try {
-    //   console.log("REQ2", req)
-      const allUsers = await UserPuzzles.getUserPuzzles();
-            // console.log("REQ2", req)
+// router.get("/serfg", async (req, res) => {
+//     // console.log("REQ1", req)
+//     const email = req.decodedJwt.email;
+//     console.log("USER EMAIL", email)
+//     try {
+//     //   console.log("REQ2", req)
+//       const allUsers = await UserPuzzles.findPuzzles();
+//             // console.log("REQ2", req)
 
-      console.log("ALL USERS", allUsers)
-      res.status(200).json(allUsers);
-    // console.log("REQ2", req)
+//       console.log("ALL USERS", allUsers)
+//       res.status(200).json(allUsers);
+//     // console.log("REQ2", req)
 
       
-    } catch (err) {
-      res.status(500).json({ msg: "erraaaaa"  });
-    }
+//     } catch (err) {
+//       res.status(500).json({ msg: "erraaaaa"  });
+//     }
 
+// })
+
+router.get('/', restricted, (req, res) => {
+  const email = req.decodedJwt.email;
+  UserPuzzles
+  .findPuzzles(email)
+  .then(puzzles => {
+      res.json(puzzles)
+  })
+  .catch(err => res.send(err))
 })
+
 
 router.post('/:puzzleId', restricted, async (req, res) => {
   try {
