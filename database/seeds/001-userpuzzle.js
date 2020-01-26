@@ -5,7 +5,7 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('user_puzzles').insert([
-     { id: 100, difficulty: '1', data: '88888', user_id: 1, puzzleDs: 10, email: 'omega'}
+     { id: 100, difficulty: '1', data: '88888', puzzleDs: 10, email: 'omega'}
       ]);   
     });
 };
