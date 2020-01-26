@@ -19,19 +19,17 @@ function getUserPuzzles() {
     return thang
 }
 
-async function savePuzzle(puzzle, email, puzzleId) {
-    console.log(puzzle)
+async function savePuzzle(puzzleStr, email, puzzleId) {
+    console.log("SAVEPUZZLE", puzzle)
     console.log(email)
     console.log(puzzleId)
 
-    const test = await db('user_puzzles')
+    await db('user_puzzles')
         .insert({
             data: puzzleStr,
             email: email,
             puzzleDs: puzzleId
-            
         })
-        console.log("TEST", test)
         .catch(e => {
             console.log(e);
             throw e;
