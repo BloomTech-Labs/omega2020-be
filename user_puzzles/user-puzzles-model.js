@@ -26,14 +26,19 @@ async function savePuzzle(puzzle, email, puzzleId) {
 
     await db('user_puzzles')
         .insert({
-            data: puzzle,
-            email: email,
-            puzzleDs: puzzleId
+            ...puzzle,
+          
         })
         .catch(e => {
             console.log(e);
             throw e;
         })
+        const savedPuzzle = {
+             ...puzzle,
+             email,
+             puzzleId
+        }
+        return savedPuzzle
     // async function verify() {
     //  const results = await db('user_puzzles as p')
     // .join('puzzles as z', 'z.id', 'p.puzzle_id')

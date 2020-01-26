@@ -22,6 +22,7 @@ router.get("/", async (req, res) => {
 
 router.post('/:puzzleId', restricted, async (req, res) => {
   try {
+    console.log("PARAMS",req.params)
     const { puzzleId } = req.params;
     const email = req.decodedJwt.email;
     const puzzleStr = req.body;
