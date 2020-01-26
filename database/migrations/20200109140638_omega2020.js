@@ -21,18 +21,18 @@ exports.up = function(knex) {
             .inTable('users')
             .onDelete('RESTRICT')
             .onUpdate('CASCADE')
-     
-        t
-            .integer('puzzle_id')
-            .unsigned()
-            .references('id')
-            .inTable('puzzles')
-            .onDelete('RESTRICT')
-            .onUpdate('CASCADE')
 
         t.integer('puzzleDs')
         t.string('email', 128)
         })
+    };
+    
+    exports.down = function(knex) {
+        return knex.schema
+        .dropTableIfExists('user_puzzles')
+        .dropTableIfExists('users')
+        .dropTableIfExists('puzzles')
+    };
             // .createTable('settings', t => {
                 //     t.increments();
                 //     t
@@ -49,13 +49,3 @@ exports.up = function(knex) {
                 //     t.boolean('notes').notNullable();
                 // })
                 
-            };
-
-exports.down = function(knex) {
-    return knex.schema
-    .dropTableIfExists('user_puzzles')
-    .dropTableIfExists('users')
-    .dropTableIfExists('puzzles')
-        // .dropTableIfExists('settings')
-        
-    };
