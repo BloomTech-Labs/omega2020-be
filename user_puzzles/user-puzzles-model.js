@@ -12,26 +12,24 @@ function findPuzzles(userId) {
 }
 
 function getUserPuzzles() {
-    console.log("here")
-    const thang = db('user_puzzles');
+    console.log("XXXXXXXXXX")
+    const thang = db('user_puzzles').where({'data': "4"});
     console.log(process.env)
-        console.log("THANG1", thang)
-        return thang
+    console.log("THANG1", thang)
+    return thang
 }
 
 async function savePuzzle(puzzle, email, puzzleId) {
-    console.log(puzzle)
+    console.log("SAVEPUZZLE", puzzle)
     console.log(email)
     console.log(puzzleId)
 
-    const test = await db('user_puzzles')
+    await db('user_puzzles')
         .insert({
             data: puzzle,
             email: email,
-            "puzzleDs": puzzleId
-            
+            puzzleDs: puzzleId
         })
-        console.log("TEST", test)
         .catch(e => {
             console.log(e);
             throw e;

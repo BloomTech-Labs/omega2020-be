@@ -20,21 +20,24 @@ router.get("/", async (req, res) => {
 
 })
 
-router.post('/:puzzleId', restricted, (req, res) => {
+router.post('/:puzzleId', restricted, async (req, res) => {
+  try {
     const { puzzleId } = req.params;
     const email = req.decodedJwt.email;
-    const puzzle = req.body;
-    console.log("ROUTER GUY", puzzle)
+    const puzzleStr = req.body;
+    console.log("ROUTER GUY", puzzleStr)
     console.log("ROUTER GUY2", email)
     console.log("ROUTER GUY3", puzzleId)
-    UserPuzzles
-    .savePuzzle(puzzle, email, puzzleId)
+    await UserPuzzles
+    .savePuzzle(puzzleStr, email, puzzleId)
     .then(puzzle => {
         console.log("THEN PUZZ", puzzle)
-        res.json(puzzle)
+        res.status(200).json(puzzle)
         console.log(email)
-    })
-    .catch(err => res.send(err))
+      })
+    } catch (err) {
+      res.status(500).json({ msg: "erraaaaa"  });
+    }
 })
 
 // router.post('/puzzles', restricted, (req, res) => {
