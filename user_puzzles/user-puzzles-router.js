@@ -31,7 +31,7 @@ router.post('/:puzzleId', restricted, (req, res) => {
     .savePuzzle(puzzle, email, puzzleId)
     .then(puzzle => {
         console.log("THEN PUZZ", puzzle)
-        res.json(puzzle)
+        res.status(200).json(puzzle)
         console.log(email)
     })
     .catch(err => res.send(err))
