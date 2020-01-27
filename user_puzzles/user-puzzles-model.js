@@ -27,6 +27,8 @@ async function savePuzzle(puzzle, email, puzzleId) {
     await db('user_puzzles')
         .insert({
             ...puzzle,
+            email: email,
+            puzzleDs: puzzleId
           
         })
         .catch(e => {
