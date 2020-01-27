@@ -8,7 +8,12 @@ module.exports = {
 };
 
 function findPuzzles(email) {
-    return db('user_puzzles').where({'email': email});
+    return db('user_puzzles')
+    .where({'email': email})
+    .orderBy('id', 'DESC')
+    .first()
+    ;
+
 }
 
 function getUserPuzzles() {
