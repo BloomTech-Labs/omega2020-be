@@ -42,8 +42,10 @@ router.post('/:puzzleId', restricted, async (req, res) => {
     console.log("ROUTER GUY", puzzleStr)
     console.log("ROUTER GUY2", email)
     console.log("ROUTER GUY3", puzzleId)
+    console.log("ROUTER GUY4", req)
+
     await UserPuzzles
-    .savePuzzle(puzzleStr, email, puzzleId, solved)
+    .savePuzzle(puzzleStr, email, puzzleId)
     .then(puzzle => {
         console.log("THEN PUZZ", puzzle)
         res.status(200).json(puzzle)
@@ -51,6 +53,7 @@ router.post('/:puzzleId', restricted, async (req, res) => {
       })
     } catch (err) {
       res.status(500).json({ msg: "erraaaaa"  });
+      console.log(err)
     }
 })
 
