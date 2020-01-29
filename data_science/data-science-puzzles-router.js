@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const restricted = require('../auth/restricted-middleware.js')
 
 const { Pool, Client } = require('pg')
 const connectionString = 'postgres://postgres:omega2020database@omega2020.cbydc0au6atn.us-east-2.rds.amazonaws.com:5432/postgres'
@@ -20,6 +21,17 @@ client.query('SELECT NOW()', (err, res) => {
 router.get('/', (req, res, next) => {
   pool.query('SELECT sudoku, solution, level, id FROM puzzle_table ORDER BY RANDOM() LIMIT 1;',
               (q_err, q_res ) => {
+                  res.json(q_res.rows[0])
+                  if (q_err) {
+                    res.send(q_err)
+                  }
+      })
+})
+
+router.get('/saved', (req, res, next, puzzleDs) => {
+  pool.query(`SELECT solution FROM puzzle_table WHERE id=${puzzleDs};`,
+              (q_err, q_res ) => {
+                console.log("QRES DIAB", q_res)
                   res.json(q_res.rows[0])
                   if (q_err) {
                     res.send(q_err)

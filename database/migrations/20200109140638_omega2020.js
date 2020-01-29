@@ -24,6 +24,7 @@ exports.up = function(knex) {
 
         t.integer('puzzleDs')
         t.string('email', 128)
+        t.string('solved', 128)
         })
     };
     
