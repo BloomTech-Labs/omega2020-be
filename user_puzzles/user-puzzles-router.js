@@ -43,7 +43,7 @@ router.post('/:puzzleId', restricted, async (req, res) => {
     console.log("ROUTER GUY2", email)
     console.log("ROUTER GUY3", puzzleId)
     await UserPuzzles
-    .savePuzzle(puzzleStr, email, puzzleId)
+    .savePuzzle(puzzleStr, email, puzzleId, solved)
     .then(puzzle => {
         console.log("THEN PUZZ", puzzle)
         res.status(200).json(puzzle)

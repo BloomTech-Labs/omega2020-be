@@ -24,7 +24,7 @@ function getUserPuzzles() {
     return thang
 }
 
-async function savePuzzle(puzzle, email, puzzleId) {
+async function savePuzzle(puzzle, email, puzzleId, solved, level) {
     console.log("SAVEPUZZLE", puzzle)
     console.log(email)
     console.log(puzzleId)
@@ -33,8 +33,9 @@ async function savePuzzle(puzzle, email, puzzleId) {
         .insert({
             ...puzzle,
             email: email,
-            puzzleDs: puzzleId
-          
+            puzzleDs: puzzleId,
+            solved: solved,
+            difficulty: level
         })
         .catch(e => {
             console.log(e);
