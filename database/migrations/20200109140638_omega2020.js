@@ -12,6 +12,8 @@ exports.up = function(knex) {
     .createTable('user_puzzles', t => {
         t.time('time');
         t.string('difficulty', 128);
+        t.string('original', 128);
+        t.string('solved', 128);
         t.string('data', 128).notNullable();
         t.increments();
         t
@@ -20,11 +22,10 @@ exports.up = function(knex) {
             .references('id')
             .inTable('users')
             .onDelete('RESTRICT')
-            .onUpdate('CASCADE')
+            .onUpdate('CASCADE');
 
-        t.integer('puzzleDs')
-        t.string('email', 128)
-        t.string('solved', 128)
+        t.integer('puzzleDs');
+        t.string('email', 128);
         })
     };
     

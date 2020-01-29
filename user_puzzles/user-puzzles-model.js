@@ -24,7 +24,7 @@ function getUserPuzzles() {
     return thang
 }
 
-async function savePuzzle(puzzle, email, puzzleId) {
+async function savePuzzle(puzzle, email, puzzleId, original) {
     console.log("SAVEPUZZLE", puzzle)
     console.log(email)
     console.log(puzzleId)
@@ -34,6 +34,7 @@ async function savePuzzle(puzzle, email, puzzleId) {
             ...puzzle,
             email: email,
             puzzleDs: puzzleId,
+            original: original
         })
         .catch(e => {
             console.log(e);
@@ -42,7 +43,8 @@ async function savePuzzle(puzzle, email, puzzleId) {
         const savedPuzzle = {
              ...puzzle,
              email,
-             puzzleId
+             puzzleId,
+             original
         }
         return savedPuzzle
     // async function verify() {
