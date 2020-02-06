@@ -2,31 +2,61 @@ const router = require('express').Router();
 const restricted = require('../auth/restricted-middleware.js')
 const UserPuzzles = require('./user-puzzles-model')
 
+// router.get("/serfg", async (req, res) => {
+//     // console.log("REQ1", req)
+//     const email = req.decodedJwt.email;
+//     console.log("USER EMAIL", email)
+//     try {
+//     //   console.log("REQ2", req)
+//       const allUsers = await UserPuzzles.findPuzzles();
+//             // console.log("REQ2", req)
+
+//       console.log("ALL USERS", allUsers)
+//       res.status(200).json(allUsers);
+//     // console.log("REQ2", req)
+
+      
+//     } catch (err) {
+//       res.status(500).json({ msg: "erraaaaa"  });
+//     }
+
+// })
+
 router.get('/', restricted, (req, res) => {
-    const userId = req.decodedJwt.userId;
-    UserPuzzles
-    .findPuzzles(userId)
-    .then(puzzles => {
-        console.log('User puzzles')
-        console.log(puzzles);
-        res.json(puzzles)
-    })
-    .catch(err => res.send(err))
+  const email = req.decodedJwt.email;
+  UserPuzzles
+  .findPuzzles(email)
+  .then(puzzles => {
+      res.json(puzzles)
+  })
+  .catch(err => res.send(err))
 })
 
 
-router.post('/:puzzleId', restricted, (req, res) => {
+router.post('/:puzzleId', restricted, async (req, res) => {
+  try {
+    console.log("PARAMS",req.params)
     const { puzzleId } = req.params;
     const email = req.decodedJwt.email;
-    const userId = req.decodedJwt.userId;
-    const puzzle = req.body;
-    UserPuzzles
-    .savePuzzle(puzzle, { userId, puzzleId }, email)
+    const puzzleStr = req.body;
+    const original = req.body.original;
+    console.log("ROUTER GUY", puzzleStr)
+    console.log("ROUTER GUY2", email)
+    console.log("ROUTER GUY3", puzzleId)
+    console.log("ROUTER GUY4", original)
+    // console.log("ROUTER GUY4", req)
+
+    await UserPuzzles
+    .savePuzzle(puzzleStr, email, puzzleId, original)
     .then(puzzle => {
-        res.json(puzzle)
+        console.log("THEN PUZZ", puzzle)
+        res.status(200).json(puzzle)
         console.log(email)
-    })
-    .catch(err => res.send(err))
+      })
+    } catch (err) {
+      res.status(500).json({ msg: "erraaaaa"  });
+      console.log(err)
+    }
 })
 
 // router.post('/puzzles', restricted, (req, res) => {

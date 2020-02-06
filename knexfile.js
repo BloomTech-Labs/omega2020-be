@@ -1,8 +1,9 @@
-// Update with your config settings.
+require("dotenv").config();
+
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: "sqlite3",
     connection: {
       filename: './database/omega-db.db3'
     },

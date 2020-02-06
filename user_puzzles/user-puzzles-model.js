@@ -3,42 +3,63 @@ const db = require('../database/dbconfig')
 module.exports = {
     findPuzzles,
     savePuzzle,
-    findUserPuzzleByID
+    findUserPuzzleByID,
+    getUserPuzzles
 };
 
-function findPuzzles(userId) {
-    return db('user_puzzles').where({'user_id': userId});
+function findPuzzles(email) {
+    return db('user_puzzles')
+    .where({'email': email})
+    .orderBy('id', 'DESC')
+    .first()
+    ;
+
 }
 
-async function savePuzzle(puzzle, { userId, puzzleId }, email) {
-    console.log(puzzle)
-    console.log(userId)
+function getUserPuzzles() {
+    console.log("XXXXXXXXXX")
+    const thang = db('user_puzzles').where({'data': "4"});
+    console.log(process.env)
+    console.log("THANG1", thang)
+    return thang
+}
+
+async function savePuzzle(puzzle, email, puzzleId, original) {
+    console.log("SAVEPUZZLE", puzzle)
+    console.log(email)
     console.log(puzzleId)
-    
-    return await db('user_puzzles')
+
+    await db('user_puzzles')
         .insert({
             ...puzzle,
-            user_id: userId,
-            puzzle_id: puzzleId
-        }).catch(e => {
+            email: email,
+            puzzleDs: puzzleId,
+            original: original
+        })
+        .catch(e => {
             console.log(e);
             throw e;
         })
+        const savedPuzzle = {
+             ...puzzle,
+             email,
+             puzzleId,
+             original
+        }
+        return savedPuzzle
     // async function verify() {
     //  const results = await db('user_puzzles as p')
     // .join('puzzles as z', 'z.id', 'p.puzzle_id')
     // .join('users as u', 'u.id', 'p.user_id')
     // .select('p.*', 'u.email', 'z.id', 'p.id')
-    // .where({ 'u.email': email })
-    // .where({ 'z.id': puzzleId })
-    // .where({ 'u.id': userId })
-    //     await db('user_puzzles')
+    //     const test2 = await db('user_puzzles')
     //     .insert({
-    //         ...puzzle,
-    //         user_id: userId,
-    //         puzzle_id: puzzleId
+    //         data: puzzle,
+    //         email: email,
+    //         puzzleDs: puzzleId
     //     })
-    //     return "Successfully added puzzle"
+    //     console.log("TEST2", test2)
+        // return "Successfully added puzzle"
         
     // }
     // return await verify()
