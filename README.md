@@ -1,4 +1,6 @@
 # Omega2020 - Backend Documentation
+[![Maintainability](https://api.codeclimate.com/v1/badges/bd4c771bb16203fb57de/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/omega2020-be/maintainability)
+
 
 This is a full list of the endpoints needed to connect to the Omega2020 API.
 
