@@ -7,8 +7,17 @@
   "license": "MIT",
   "scripts": {
     "server": "cross-env DB_ENV=development nodemon index.js",
-    "test": "cross-env DB_ENV=testing jest --watch",
-    "start": "node index.js"
+    "test": "cross-env DB_ENV=testing jest --watch --coverage --detectOpenHandles --forceExit || true",
+    "start": "node index.js",
+    "coverage": "jest --coverage --detectOpenHandles --forceExit || true"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.js",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/__tests__/**"
+    ]
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
