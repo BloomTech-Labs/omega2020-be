@@ -5,6 +5,7 @@ module.exports = {
 		client: 'pg',
 		connection: {
 			host: process.env.HOST,
+			port: process.env.PORT,
 			user: process.env.USER,
 			password: process.env.PASSWORD,
 			database: process.env.DATABASE
@@ -20,6 +21,7 @@ module.exports = {
 		client: 'pg',
 		connection: {
 			host: process.env.HOST,
+			port: process.env.PORT,
 			user: process.env.USER,
 			password: process.env.PASSWORD,
 			database: process.env.TEST_DB
@@ -34,9 +36,11 @@ module.exports = {
 	production: {
 		client: 'pg',
 		connection: {
-			connection: process.env.PRO_DB_URL || HOST,
-			user: process.env.USER,
-			password: process.env.PRO_PASS || PASSWORD
+			host: process.env.PRO_HOST || process.env.HOST,
+			port: process.env.PORT,
+			user: process.env.PRO_USER || process.env.USER,
+			password: process.env.PRO_PASS || process.env.PASSWORD,
+			database: process.env.PRO_DB || process.env.DATABASE
 		},
 		migrations: {
 			directory: './database/migrations'
