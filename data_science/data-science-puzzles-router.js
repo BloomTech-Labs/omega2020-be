@@ -2,7 +2,7 @@ const router = require('express').Router();
 const restricted = require('../auth/restricted-middleware.js')
 
 const { Pool, Client } = require('pg')
-const connectionString = 'postgres://postgres:omega2020database@omega2020.cbydc0au6atn.us-east-2.rds.amazonaws.com:5432/postgres'
+const connectionString = 'postgres://postgres:omega2020database@database-1.ctsy0o6uydaq.us-east-1.rds.amazonaws.com:5432/postgres'
 const pool = new Pool({
   connectionString: connectionString,
 })
