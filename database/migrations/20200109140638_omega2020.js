@@ -1,22 +1,26 @@
-exports.up = function(knex) {
-    return knex.schema
-    .createTable('puzzles', t => {
-        t.increments();
-        t.string('data', 128);
+exports.up = async function(knex) {
+    await knex.schema
+    .createTable('puzzles', tbl => {
+        tbl.increments();
+        tbl.string('data', 128);
     })
-    .createTable('users', t => {
-        t.increments();
-        t.string('password', 128).notNullable();
-        t.string('email', 255).notNullable().unique();;
+
+    await knex.schema
+    .createTable('users', tbl => {
+        tbl.increments();
+        tbl.string('password', 128).notNullable();
+        tbl.string('email', 255).notNullable().unique();;
     })
-    .createTable('user_puzzles', t => {
-        t.time('time');
-        t.string('difficulty', 128);
-        t.string('original', 128);
-        t.string('solved', 128);
-        t.string('data', 128).notNullable();
-        t.increments();
-        t
+        
+    await knex.schema
+    .createTable('user_puzzles', tbl => {
+        tbl.time('time');
+        tbl.string('difficulty', 128);
+        tbl.string('original', 128);
+        tbl.string('solved', 128);
+        tbl.string('data', 128).notNullable();
+        tbl.increments();
+        tbl
             .integer('user_id')
             .unsigned()
             .references('id')
@@ -24,30 +28,30 @@ exports.up = function(knex) {
             .onDelete('RESTRICT')
             .onUpdate('CASCADE');
 
-        t.integer('puzzleDs');
-        t.string('email', 128);
-        })
-    };
-    
-    exports.down = function(knex) {
-        return knex.schema
-        .dropTableIfExists('user_puzzles')
-        .dropTableIfExists('users')
-        .dropTableIfExists('puzzles')
-    };
-            // .createTable('settings', t => {
-                //     t.increments();
-                //     t
+        tbl.integer('puzzleDs');
+        tbl.string('email', 128);
+    })
+};
+
+exports.down = function(knex) {
+    return knex.schema
+    .dropTableIfExists('user_puzzles')
+    .dropTableIfExists('users')
+    .dropTableIfExists('puzzles')
+};
+            // .createTable('settings', tbl => {
+                //     tbl.increments();
+                //     tbl
                 //     .integer('user_id')
                 //     .unsigned()
                 //     .references('id')
                 //     .inTable('users')
                 //     .onDelete('RESTRICT')
                 //     .onUpdate('CASCADE')
-                //     t.string('theme', 255).notNullable();
-                //     t.boolean('text accessibility').notNullable();
-                //     t.boolean('dyslexic accessibility').notNullable();
-                //     t.boolean('sounds').notNullable();
-                //     t.boolean('notes').notNullable();
+                //     tbl.string('theme', 255).notNullable();
+                //     tbl.boolean('text accessibility').notNullable();
+                //     tbl.boolean('dyslexic accessibility').notNullable();
+                //     tbl.boolean('sounds').notNullable();
+                //     tbl.boolean('notes').notNullable();
                 // })
                 
