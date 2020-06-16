@@ -28,6 +28,19 @@ router.get('/', (req, res, next) => {
       })
 })
 
+router.get('/4x4', (req, res, next) => {
+	pool.query(
+		'SELECT id, puzzle, solution FROM 4x4_puzzles ORDER BY RANDOM() LIMIT 1;',
+		(q_err, q_res) => {
+			console.log('QRES 4x4 easy', q_res);
+			res.json(q_res.rows[0]);
+			if (q_err) {
+				res.send(q_err);
+			}
+		}
+	);
+});
+
 router.get('/saved', (req, res, next, puzzleDs) => {
   pool.query(`SELECT solution FROM puzzle_table WHERE id=${puzzleDs};`,
               (q_err, q_res ) => {
