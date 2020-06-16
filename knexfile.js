@@ -17,7 +17,7 @@ module.exports = {
 			directory: './database/seeds'
 		}
 	},
-	testing: {
+	test: {
 		client: 'pg',
 		connection: {
 			host: process.env.HOST,
