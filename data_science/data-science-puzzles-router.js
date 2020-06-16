@@ -79,7 +79,7 @@ router.get('/gentle', (req, res, next) => {
                   }
       })
 })
-router.get('/testing', (req, res, next) => {
+router.get('/test', (req, res, next) => {
   pool.query("SELECT sudoku, solution, level, id FROM puzzle_table WHERE id='5029' LIMIT 1;",
               (q_err, q_res ) => {
                 console.log("QRES TEST", q_res)
