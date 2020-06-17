@@ -2,7 +2,7 @@ const router = require('express').Router();
 const restricted = require('../auth/restricted-middleware.js')
 
 const { Pool, Client } = require('pg')
-const connectionString = 'postgres://postgres:omega2020database@omega2020.cbydc0au6atn.us-east-2.rds.amazonaws.com:5432/postgres'
+const connectionString = 'postgres://postgres:omega2020database@database-1.ctsy0o6uydaq.us-east-1.rds.amazonaws.com:5432/postgres'
 const pool = new Pool({
   connectionString: connectionString,
 })
@@ -27,6 +27,45 @@ router.get('/', (req, res, next) => {
                   }
       })
 })
+
+router.get('/4x4', (req, res, next) => {
+	pool.query(
+		'SELECT id, puzzle, solution FROM 4x4_puzzles ORDER BY RANDOM() LIMIT 1;',
+		(q_err, q_res) => {
+			console.log('QRES 4x4 easy', q_res);
+			res.json(q_res.rows[0]);
+			if (q_err) {
+				res.send(q_err);
+			}
+		}
+	);
+});
+
+// router.get('/6x6', (req, res, next) => {
+//   pool.query(
+//     'SELECT id, puzzle, solution FROM 6x6_puzzles ORDER BY RANDOM() LIMIT 1;',
+//     (q_err, q_res) => {
+//       console.log('QRES 6x6 easy', q_res);
+//       res.json(q_res.rows[0]);
+//       if (q_err) {
+//         res.send(q_err);
+//       }
+//     }
+//   );
+// });
+
+// router.get('/9x9', (req, res, next) => {
+//   pool.query(
+//     'SELECT id, puzzle, solution FROM 9x9_puzzles ORDER BY RANDOM() LIMIT 1;',
+//     (q_err, q_res) => {
+//       console.log('QRES 9x9 easy', q_res);
+//       res.json(q_res.rows[0]);
+//       if (q_err) {
+//         res.send(q_err);
+//       }
+//     }
+//   );
+// });
 
 router.get('/saved', (req, res, next, puzzleDs) => {
   pool.query(`SELECT solution FROM puzzle_table WHERE id=${puzzleDs};`,
@@ -79,7 +118,7 @@ router.get('/gentle', (req, res, next) => {
                   }
       })
 })
-router.get('/testing', (req, res, next) => {
+router.get('/test', (req, res, next) => {
   pool.query("SELECT sudoku, solution, level, id FROM puzzle_table WHERE id='5029' LIMIT 1;",
               (q_err, q_res ) => {
                 console.log("QRES TEST", q_res)

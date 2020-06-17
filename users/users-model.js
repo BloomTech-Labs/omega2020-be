@@ -6,6 +6,20 @@ module.exports = {
   findById,
 };
 
+function findBy(email) {
+  return db('users').where(email);
+}
+
+function findById(id) {
+  return db('users')
+    .where({ id })
+    .first()
+    .catch((error) => {
+      console.log('Error finding by id');
+      throw error;
+    });
+}
+
 async function add(user) {
   if (process.env.DB_ENV === 'production') {
     console.log(db.insert(user).into('users').returning('id'), 'add method');
@@ -27,19 +41,6 @@ async function add(user) {
     console.log();
     return findById(id);
   }
-}
-
-function findBy(email) {
-  return db('users').where(email);
-}
-function findById(id) {
-  return db('users')
-    .where({ id })
-    .first()
-    .catch((error) => {
-      console.log('Error finding by id');
-      throw error;
-    });
 }
 
 //   const db = require('../database/dbconfig.js');
