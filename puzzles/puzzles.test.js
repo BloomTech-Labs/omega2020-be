@@ -8,8 +8,8 @@ const {
     editPuzzle
 } = require('./puzzles-model')
 
-it('should set db env to testing', function() {
-    expect(process.env.DB_ENV).toBe("testing");
+it('should set db env to test', function() {
+    expect(process.env.DB_ENV).toBe("test");
 })
 
 describe('GET', function() {
