@@ -36,7 +36,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/4x4', (req, res, next) => {
   pool.query(
-    'SELECT id, puzzle, solution FROM 4x4_puzzles ORDER BY RANDOM() LIMIT 1;',
+    'SELECT sudoku, id, puzzle, solution FROM 4x4_puzzles ORDER BY RANDOM() LIMIT 1;',
     (q_err, q_res) => {
       console.log('QRES 4x4 easy', q_res);
       res.json(q_res.rows[0]);
@@ -49,7 +49,7 @@ router.get('/4x4', (req, res, next) => {
 
 // router.get('/6x6', (req, res, next) => {
 //   pool.query(
-//     'SELECT id, puzzle, solution FROM 6x6_puzzles ORDER BY RANDOM() LIMIT 1;',
+//     'SELECT sudoku, id, puzzle, solution FROM 6x6_puzzles ORDER BY RANDOM() LIMIT 1;',
 //     (q_err, q_res) => {
 //       console.log('QRES 6x6 easy', q_res);
 //       res.json(q_res.rows[0]);
@@ -62,7 +62,7 @@ router.get('/4x4', (req, res, next) => {
 
 // router.get('/9x9', (req, res, next) => {
 //   pool.query(
-//     'SELECT id, puzzle, solution FROM 9x9_puzzles ORDER BY RANDOM() LIMIT 1;',
+//     'SELECT sudoku, id, puzzle, solution FROM 9x9_puzzles ORDER BY RANDOM() LIMIT 1;',
 //     (q_err, q_res) => {
 //       console.log('QRES 9x9 easy', q_res);
 //       res.json(q_res.rows[0]);
