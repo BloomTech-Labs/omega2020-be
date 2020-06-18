@@ -34,9 +34,9 @@ router.get('/', (req, res, next) => {
   );
 });
 
-router.get('/4x4', (req, res, next) => {
+router.get('/4x4/easy', (req, res, next) => {
   pool.query(
-    'SELECT id, puzzle, solution FROM 4x4_puzzles ORDER BY RANDOM() LIMIT 1;',
+    "SELECT sudoku, puzzle, solution FROM 4x4_puzzles WHERE level='Easy' ORDER BY RANDOM() LIMIT 1;",
     (q_err, q_res) => {
       console.log('QRES 4x4 easy', q_res);
       res.json(q_res.rows[0]);
@@ -47,31 +47,109 @@ router.get('/4x4', (req, res, next) => {
   );
 });
 
-// router.get('/6x6', (req, res, next) => {
-//   pool.query(
-//     'SELECT id, puzzle, solution FROM 6x6_puzzles ORDER BY RANDOM() LIMIT 1;',
-//     (q_err, q_res) => {
-//       console.log('QRES 6x6 easy', q_res);
-//       res.json(q_res.rows[0]);
-//       if (q_err) {
-//         res.send(q_err);
-//       }
-//     }
-//   );
-// });
+router.get('/4x4/medium', (req, res, next) => {
+  pool.query(
+    "SELECT sudoku, puzzle, solution FROM 4x4_puzzles WHERE level='Medium' ORDER BY RANDOM() LIMIT 1;",
+    (q_err, q_res) => {
+      console.log('QRES 4x4 medium', q_res);
+      res.json(q_res.rows[0]);
+      if (q_err) {
+        res.send(q_err);
+      }
+    }
+  );
+});
 
-// router.get('/9x9', (req, res, next) => {
-//   pool.query(
-//     'SELECT id, puzzle, solution FROM 9x9_puzzles ORDER BY RANDOM() LIMIT 1;',
-//     (q_err, q_res) => {
-//       console.log('QRES 9x9 easy', q_res);
-//       res.json(q_res.rows[0]);
-//       if (q_err) {
-//         res.send(q_err);
-//       }
-//     }
-//   );
-// });
+router.get('/4x4/hard', (req, res, next) => {
+  pool.query(
+    "SELECT sudoku, puzzle, solution FROM 4x4_puzzles WHERE level='Hard' ORDER BY RANDOM() LIMIT 1;",
+    (q_err, q_res) => {
+      console.log('QRES 4x4 hard', q_res);
+      res.json(q_res.rows[0]);
+      if (q_err) {
+        res.send(q_err);
+      }
+    }
+  );
+});
+
+router.get('/6x6/easy', (req, res, next) => {
+  pool.query(
+    "SELECT sudoku, puzzle, solution FROM 6x6_puzzles WHERE level='Easy' ORDER BY RANDOM() LIMIT 1;",
+    (q_err, q_res) => {
+      console.log('QRES 6x6 easy', q_res);
+      res.json(q_res.rows[0]);
+      if (q_err) {
+        res.send(q_err);
+      }
+    }
+  );
+});
+
+router.get('/6x6/medium', (req, res, next) => {
+  pool.query(
+    "SELECT sudoku, puzzle, solution, level FROM 6x6_puzzles WHERE level='Medium' ORDER BY RANDOM() LIMIT 1;",
+    (q_err, q_res) => {
+      console.log('QRES 6x6 medium', q_res);
+      res.json(q_res.rows[0]);
+      if (q_err) {
+        res.send(q_err);
+      }
+    }
+  );
+});
+
+router.get('/6x6/hard', (req, res, next) => {
+  pool.query(
+    "SELECT sudoku, puzzle, solution, level FROM 6x6_puzzles WHERE level='Hard' ORDER BY RANDOM() LIMIT 1;",
+    (q_err, q_res) => {
+      console.log('QRES 6x6 hard', q_res);
+      res.json(q_res.rows[0]);
+      if (q_err) {
+        res.send(q_err);
+      }
+    }
+  );
+});
+
+router.get('/9x9/easy', (req, res, next) => {
+  pool.query(
+    'SELECT sudoku, puzzle, solution FROM 9x9_puzzles WHERE level='Easy' ORDER BY RANDOM() LIMIT 1;',
+    (q_err, q_res) => {
+      console.log('QRES 9x9 easy', q_res);
+      res.json(q_res.rows[0]);
+      if (q_err) {
+        res.send(q_err);
+      }
+    }
+  );
+});
+
+router.get('/9x9/medium', (req, res, next) => {
+  pool.query(
+    "SELECT sudoku, puzzle, solution FROM 9x9_puzzles WHERE level='Medium' ORDER BY RANDOM() LIMIT 1;",
+    (q_err, q_res) => {
+      console.log('QRES 9x9 medium', q_res);
+      res.json(q_res.rows[0]);
+      if (q_err) {
+        res.send(q_err);
+      }
+    }
+  );
+});
+
+router.get('/9x9/hard', (req, res, next) => {
+  pool.query(
+    "SELECT sudoku, puzzle, solution FROM 9x9_puzzles WHERE level='Hard' ORDER BY RANDOM() LIMIT 1;",
+    (q_err, q_res) => {
+      console.log('QRES 9x9 hard', q_res);
+      res.json(q_res.rows[0]);
+      if (q_err) {
+        res.send(q_err);
+      }
+    }
+  );
+});
 
 router.get('/saved', (req, res, next, puzzleDs) => {
   pool.query(
