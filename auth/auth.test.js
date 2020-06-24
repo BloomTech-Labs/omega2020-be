@@ -39,7 +39,7 @@ const server = require('../api/server');
 // });
 
 it('should set db env to test', function() {
-    expect(process.env.DB_ENV).toBe("test");
+    expect(process.env.NODE_ENV).toBe("test");
 })
 
 describe('add()', function() {

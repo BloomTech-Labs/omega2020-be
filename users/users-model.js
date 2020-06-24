@@ -21,7 +21,7 @@ function findById(id) {
 }
 
 async function add(user) {
-  if (process.env.DB_ENV === 'production') {
+  if (process.env.NODE_ENV === 'production') {
     console.log(db.insert(user).into('users').returning('id'), 'add method');
     return db
       .insert(user)
@@ -56,7 +56,7 @@ async function add(user) {
 //   return findById(id);
 // }
 // async function add(user) {
-//   if (process.env.DB_ENV === 'production') {
+//   if (process.env.NODE_ENV === 'production') {
 //     return db.insert(user).into('users').returning('id')
 //     .then(ids=> {
 //       console.log(ids[0]);

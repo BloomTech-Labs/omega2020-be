@@ -6,8 +6,8 @@
   "author": "<crsullivan@protonmail.com>",
   "license": "MIT",
   "scripts": {
-    "server": "cross-env DB_ENV=development nodemon index.js",
-    "test": "cross-env DB_ENV=test jest --watch --coverage --detectOpenHandles --forceExit || true",
+    "server": "cross-env NODE_ENV=development nodemon index.js",
+    "test": "cross-env NODE_ENV=test jest --watch --coverage --detectOpenHandles --forceExit || true",
     "start": "node index.js",
     "coverage": "jest --coverage --detectOpenHandles --forceExit || true"
   },
