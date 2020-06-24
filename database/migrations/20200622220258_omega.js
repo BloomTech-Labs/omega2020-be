@@ -30,12 +30,12 @@ exports.up = async function (knex) {
 	});
 };
 
-exports.down = function (knex) {
-	return knex.schema
-		.dropTableIfExists('user_puzzles')
-		.dropTableIfExists('users')
-		.dropTableIfExists('puzzles');
+exports.down = async function (knex) {
+	await knex.schema.dropTableIfExists('user_puzzles');
+	await knex.schema.dropTableIfExists('users');
+	await knex.schema.dropTableIfExists('puzzles');
 };
+
 // .createTable('settings', tbl => {
 //     tbl.increments();
 //     tbl
