@@ -4,17 +4,14 @@ const Users = require('../users/users-model.js');
 const request = require('supertest');
 const server = require('../api/server');
 
-// function resetTable(...tables) {
-// 	const query = tables
-// 		.map((table) => `TRUNCATE TABLE users RESTART IDENTITY CASCADE;`)
-// 		.join('');
-// 	return db.raw(query);
-// }
-
 describe('Test suite: register and login', () => {
 	beforeAll(async () => {
 		await db.raw('TRUNCATE TABLE users RESTART IDENTITY CASCADE');
-	});
+    });
+    
+    it('should set db env to test', () => {
+    expect(process.env.NODE_ENV).toBe('test');
+})
 
 	it('adds a user, returns JSON object', async () => {
 		return (res = await request(server)
