@@ -47,8 +47,6 @@ router.get('/4x4', (req, res, next) => {
 	);
 });
 
-// these are end points for the future that are commented out until they are ready for use.
-
 router.get('/4x4/easy', (req, res, next) => {
 	pool.query(
 		"SELECT sudoku, id, puzzle, solution FROM 4x4_puzzles WHERE level='Easy' ORDER BY RANDOM() LIMIT 1;",
