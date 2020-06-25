@@ -20,28 +20,36 @@ function findById(id) {
     });
 }
 
-async function add(user) {
-  if (process.env.DB_ENV === 'production') {
-    console.log(db.insert(user).into('users').returning('id'), 'add method');
-    return db
-      .insert(user)
-      .into('users')
-      .returning('id')
-      .then((ids) => {
-        console.log(ids[0]);
-        return findById(ids[0]);
-      })
-      .catch((error) => {
-        console.log(error);
-        throw error;
-      });
-  } else {
-    console.log(user);
-    const [id] = await db('users').insert(user);
-    console.log();
-    return findById(id);
-  }
+function add(user) {
+  return db('users')
+    .insert(user, 'id')
+    .then(([id]) => {
+      return findById(id)
+    })
 }
+
+// async function add(user) {
+//   if (process.env.NODE_ENV === 'production') {
+//     console.log(db.insert(user).into('users').returning('id'), 'add method');
+//     return db
+//       .insert(user)
+//       .into('users')
+//       .returning('id')
+//       .then((ids) => {
+//         console.log(ids[0]);
+//         return findById(ids[0]);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//         throw error;
+//       });
+//   } else {
+//     console.log(user);
+//     const [id] = await db('users').insert(user);
+//     console.log();
+//     return findById(id);
+//   }
+// }
 
 //   const db = require('../database/dbconfig.js');
 
@@ -56,7 +64,7 @@ async function add(user) {
 //   return findById(id);
 // }
 // async function add(user) {
-//   if (process.env.DB_ENV === 'production') {
+//   if (process.env.NODE_ENV === 'production') {
 //     return db.insert(user).into('users').returning('id')
 //     .then(ids=> {
 //       console.log(ids[0]);
