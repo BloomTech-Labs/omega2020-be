@@ -1,6 +1,6 @@
 const db = require('../database/dbconfig.js');
-const { add, findBy } = require('../users/users-model.js');
-const Users = require('../users/users-model.js');
+// const { add, findBy } = require('../users/users-model.js');
+// const Users = require('../users/users-model.js');
 const request = require('supertest');
 const server = require('../api/server');
 
@@ -42,9 +42,6 @@ describe('Test suite: register and login', () => {
 	});
 });
 
-// it('should set db env to test', function() {
-//     expect(process.env.NODE_ENV).toBe("test");
-// })
 
 // describe('add()', function() {
 //     beforeEach(async () => {
