@@ -69,7 +69,7 @@ Login with Omega 2020 google account
   "id": 5029
 }
 ```
-### GET random easy Puzzle Data
+### GET random easy 9x9 Puzzle Data
 
 **GET** to `/puzzle/gentle`
 
@@ -83,7 +83,7 @@ Login with Omega 2020 google account
   "id": 3726
 }
 ```
-### GET random moderate Puzzle Data
+### GET random moderate 9x9 Puzzle Data
 
 **GET** to `/puzzle/moderate`
 
@@ -97,7 +97,7 @@ Login with Omega 2020 google account
   "id": 2568
 }
 ```
-### GET random hard Puzzle Data
+### GET random hard 9x9 Puzzle Data
 
 **GET** to `/puzzle/tough`
 
@@ -111,7 +111,7 @@ Login with Omega 2020 google account
   "id": 869
 }
 ```
-### GET random very hard Puzzle Data
+### GET random very hard 9x9 Puzzle Data
 
 **GET** to `/puzzle/diabolical`
 
@@ -123,6 +123,37 @@ Login with Omega 2020 google account
   "solution": "289674351574231986163598472732986514816745293945123867427869135391457628658312749",
   "level": "Diabolical",
   "id": 5029
+}
+```
+
+```
+### GET random easy 4x4 Puzzle Data
+
+**GET** to `/puzzle/4x4/easy`
+
+- Responds with one randomly selected easy 4x4 puzzle from the data science database.
+
+```
+{
+  "sudoku": "4.21.1.3.4.2.23.",
+  "solution": "4321214334121234",
+  "level": "Easy",
+  "id": 772438
+}
+```
+
+### GET random easy 6x6 Puzzle Data
+
+**GET** to `/puzzle/6x6/easy`
+
+- Responds with one randomly selected easy 6x6 puzzle from the data science database.
+
+```
+{
+  "sudoku": ".1.4423..34.2...",
+  "solution": "3124423113422413",
+  "level": "Easy",
+  "id": 417417
 }
 ```
 
