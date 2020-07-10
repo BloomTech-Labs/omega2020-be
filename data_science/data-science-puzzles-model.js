@@ -24,19 +24,19 @@ function find4x4Puzzle() {
 }
 
 function findDSPuzzle() {
-    pool.query('SELECT sudoku FROM puzzle_table ORDER BY RANDOM() LIMIT 1;', (err, res) => {
+    pool.query('SELECT sudoku FROM _9x9_puzzles ORDER BY RANDOM() LIMIT 1;', (err, res) => {
         // console.log(res.rows.sudoku)
         return res.rows
       })
     //      pool.query(
     //          (err, res) => {
-    //         return db('puzzle_table as p')
+    //         return db('_9x9_puzzles as p')
     //         .select('p*, p.sudoku')
     //         .orderBy('random')
     //         .limit(1)
     // })
 
-    // pool.query('SELECT * FROM puzzle_table ORDER BY RANDOM() LIMIT 1;',
+    // pool.query('SELECT * FROM _9x9_puzzles ORDER BY RANDOM() LIMIT 1;',
     // (err, res) => {
     //     console.log(err, res)
     //     pool.end()
