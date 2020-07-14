@@ -126,7 +126,7 @@ Login with Omega 2020 google account
 }
 ```
 
-```
+
 ### GET random easy 4x4 Puzzle Data
 
 **GET** to `/puzzle/4x4/easy`

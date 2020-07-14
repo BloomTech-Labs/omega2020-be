@@ -23,7 +23,7 @@ client.query('SELECT NOW()', (err, res) => {
 });
 
 router.get('/', (req, res) => {
-	pool.query('SELECT sudoku, solution, level, id FROM puzzle_table ORDER BY RANDOM() LIMIT 1', (q_err, q_res) => {
+	pool.query('SELECT gridLength, row, col, sudoku, solution, level, id FROM _9x9_puzzles ORDER BY RANDOM() LIMIT 1', (q_err, q_res) => {
 		if (q_err) {
 			console.log('There was an error retrieving the sudoku puzzle from the server.');
 			throw error;
@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
 
 router.get('/4x4/easy', (req, res) => {
 	pool.query(
-		"SELECT sudoku, solution, level, id FROM _4x4_puzzles WHERE level='Easy' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
+		"SELECT gridLength, row, col, sudoku, solution, level, id FROM _4x4_puzzles WHERE level='Easy' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
 			if (q_err) {
 				console.log('There was an error retrieving the sudoku puzzle from the server.');
 				throw error;
@@ -49,7 +49,7 @@ router.get('/4x4/easy', (req, res) => {
 
 router.get('/4x4/medium', (req, res) => {
 	pool.query(
-		"SELECT sudoku, solution, level, id FROM _4x4_puzzles WHERE level='Medium' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
+		"SELECT gridLength, row, col, sudoku, solution, level, id FROM _4x4_puzzles WHERE level='Medium' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
 			if (q_err) {
 				console.log('There was an error retrieving the sudoku puzzle from the server.');
 				throw error;
@@ -62,7 +62,7 @@ router.get('/4x4/medium', (req, res) => {
 
 router.get('/4x4/hard', (req, res) => {
 	pool.query(
-		"SELECT sudoku, solution, level, id FROM _4x4_puzzles WHERE level='Hard' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
+		"SELECT gridLength, row, col, sudoku, solution, level, id FROM _4x4_puzzles WHERE level='Hard' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
 			if (q_err) {
 				console.log('There was an error retrieving the sudoku puzzle from the server.');
 				throw error;
@@ -75,7 +75,7 @@ router.get('/4x4/hard', (req, res) => {
 
 router.get('/6x6/easy', (req, res) => {
 	pool.query(
-		"SELECT sudoku, solution, level, id FROM _6x6_puzzles WHERE level='Easy' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
+		"SELECT gridLength, row, col, sudoku, solution, level, id FROM _6x6_puzzles WHERE level='Easy' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
 			if (q_err) {
 				console.log('There was an error retrieving the sudoku puzzle from the server.');
 				throw error;
@@ -88,7 +88,7 @@ router.get('/6x6/easy', (req, res) => {
 
 router.get('/6x6/medium', (req, res) => {
 	pool.query(
-		"SELECT sudoku, solution, level, id FROM _6x6_puzzles WHERE level='Medium' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
+		"SELECT gridLength, row, col, sudoku, solution, level, id FROM _6x6_puzzles WHERE level='Medium' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
 			if (q_err) {
 				console.log('There was an error retrieving the sudoku puzzle from the server.');
 				throw error;
@@ -101,7 +101,7 @@ router.get('/6x6/medium', (req, res) => {
 
 router.get('/6x6/hard', (req, res) => {
 	pool.query(
-		"SELECT sudoku, solution, level, id FROM _6x6_puzzles WHERE level='Hard' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
+		"SELECT gridLength, row, col, sudoku, solution, level, id FROM _6x6_puzzles WHERE level='Hard' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
 			if (q_err) {
 				console.log('There was an error retrieving the sudoku puzzle from the server.');
 				throw error;
@@ -114,7 +114,7 @@ router.get('/6x6/hard', (req, res) => {
 
 router.get('/saved', (req, res, next, puzzleDs) => {
 	pool.query(
-		`SELECT solution FROM puzzle_table WHERE id=${puzzleDs}`, (q_err, q_res) => {
+		`SELECT solution FROM _9x9_puzzles WHERE id=${puzzleDs}`, (q_err, q_res) => {
 			if (q_err) {
 				console.log('There was an error retrieving the sudoku puzzle from the server.');
 				throw error;
@@ -125,9 +125,9 @@ router.get('/saved', (req, res, next, puzzleDs) => {
 		});
 });
 
-router.get('/diabolical', (req, res) => {
+router.get('/9x9/hard', (req, res) => {
 	pool.query(
-		"SELECT sudoku, solution, level, id FROM puzzle_table WHERE level='Diabolical' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
+		"SELECT gridLength, row, col, sudoku, solution, level, id FROM _9x9_puzzles WHERE level='Hard' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
 			if (q_err) {
 				console.log('There was an error retrieving the sudoku puzzle from the server.');
 				throw error;
@@ -138,9 +138,9 @@ router.get('/diabolical', (req, res) => {
 		});
 });
 
-router.get('/tough', (req, res) => {
+router.get('/9x9/medium', (req, res) => {
 	pool.query(
-		"SELECT sudoku, solution, level, id FROM puzzle_table WHERE level='Tough' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
+		"SELECT gridLength, row, col, sudoku, solution, level, id FROM _9x9_puzzles WHERE level='Medium' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
 			if (q_err) {
 				console.log('There was an error retrieving the sudoku puzzle from the server.');
 				throw error;
@@ -151,22 +151,9 @@ router.get('/tough', (req, res) => {
 		});
 });
 
-router.get('/moderate', (req, res) => {
+router.get('/9x9/easy', (req, res) => {
 	pool.query(
-		"SELECT sudoku, solution, level, id FROM puzzle_table WHERE level='Moderate' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
-			if (q_err) {
-				console.log('There was an error retrieving the sudoku puzzle from the server.');
-				throw error;
-			}
-			if (q_res) {
-				res.status(200).json(q_res.rows[0]);
-			}
-		});
-});
-
-router.get('/gentle', (req, res) => {
-	pool.query(
-		"SELECT sudoku, solution, level, id FROM puzzle_table WHERE level='Gentle' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
+		"SELECT gridLength, row, col, sudoku, solution, level, id FROM _9x9_puzzles WHERE level='Easy' ORDER BY RANDOM() LIMIT 1", (q_err, q_res) => {
 			if (q_err) {
 				console.log('There was an error retrieving the sudoku puzzle from the server.');
 				throw error;
@@ -179,7 +166,7 @@ router.get('/gentle', (req, res) => {
 
 router.get('/test', (req, res) => {
 	pool.query(
-		"SELECT sudoku, solution, level, id FROM puzzle_table WHERE id='5029' LIMIT 1", (q_err, q_res) => {
+		"SELECT gridLength, row, col, sudoku, solution, level, id FROM _9x9_puzzles WHERE id='5029' LIMIT 1", (q_err, q_res) => {
 			if (q_err) {
 				console.log('There was an error retrieving the sudoku puzzle from the server.');
 				throw error;
@@ -193,7 +180,7 @@ router.get('/test', (req, res) => {
 router.get('/:id', (req, res) => {
 	const { id } = req.params;
 	pool.query(
-		`SELECT sudoku, solution, level, id FROM puzzle_table where id = ${id}`, (q_err, q_res) => {
+		`SELECT gridLength, row, col, sudoku, solution, level, id FROM _9x9_puzzles where id = ${id}`, (q_err, q_res) => {
 			if (q_err) {
 				console.log('There was an error retrieving the sudoku puzzle from the server.');
 				throw error;
@@ -204,4 +191,5 @@ router.get('/:id', (req, res) => {
 		});
 });
 
+//
 module.exports = router;
