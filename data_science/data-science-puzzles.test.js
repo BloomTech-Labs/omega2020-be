@@ -11,16 +11,24 @@ const client = new Client({
 
 client.connect();
 
-describe('Test suite: receive correct response from database', () => {
+describe('Test suite: receive correct response from database for random puzzle', () => {
   afterAll(async () => {
     db.end();
   });
 
-  it('returns a JSON object with status 200', async () => {
+  it('returns an object with status 200', async () => {
     return (res = await request(server)
       .get('/puzzle')
       .then(res => {
-        expect(res.status).toBe(200)
+        expect(res.status).toBe(200);
+      }))
+  })
+
+  it('returns a JSON object', async () => {
+    return (res = await request(server)
+      .get('/puzzle')
+      .then(res => {
+        expect(res.type).toBe('application/json');
       }))
   })
 });
