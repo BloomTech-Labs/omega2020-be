@@ -44,13 +44,7 @@ describe('Test suite: receive correct response from database for random puzzle',
     return (res = await request(server)
       .get('/puzzle')
       .then(res => {
-        expect(puzzle).toContain('gridlength');
-        expect(puzzle).toContain('row');
-        expect(puzzle).toContain('col');
-        expect(puzzle).toContain('sudoku');
-        expect(puzzle).toContain('solution');
-        expect(puzzle).toContain('level');
-        expect(puzzle).toContain('id');
+        expect(puzzle).toContain('gridlength', 'row', 'col', 'sudoku', 'solution', 'level', 'id');
       }))
   });
 });
@@ -84,13 +78,7 @@ describe('Test suite: receive correct response from database for a 4x4 puzzle, d
     return (res = await request(server)
       .get('/puzzle/4x4/easy')
       .then(res => {
-        expect(puzzle).toContain('gridlength');
-        expect(puzzle).toContain('row');
-        expect(puzzle).toContain('col');
-        expect(puzzle).toContain('sudoku');
-        expect(puzzle).toContain('solution');
-        expect(puzzle).toContain('level');
-        expect(puzzle).toContain('id');
+        expect(puzzle).toContain('gridlength', 'row', 'col', 'sudoku', 'solution', 'level', 'id');
       }))
   })
 });
@@ -124,13 +112,7 @@ describe('Test suite: receive correct response from database for a 6x6 puzzle, d
     return (res = await request(server)
       .get('/puzzle/6x6/easy')
       .then(res => {
-        expect(puzzle).toContain('gridlength');
-        expect(puzzle).toContain('row');
-        expect(puzzle).toContain('col');
-        expect(puzzle).toContain('sudoku');
-        expect(puzzle).toContain('solution');
-        expect(puzzle).toContain('level');
-        expect(puzzle).toContain('id');
+        expect(puzzle).toContain('gridlength', 'row', 'col', 'sudoku', 'solution', 'level', 'id');
       }))
   })
 });
@@ -164,13 +146,7 @@ describe('Test suite: receive correct response from database for a 9x9 puzzle, d
     return (res = await request(server)
       .get('/puzzle/9x9/easy')
       .then(res => {
-        expect(puzzle).toContain('gridlength');
-        expect(puzzle).toContain('row');
-        expect(puzzle).toContain('col');
-        expect(puzzle).toContain('sudoku');
-        expect(puzzle).toContain('solution');
-        expect(puzzle).toContain('level');
-        expect(puzzle).toContain('id');
+        expect(puzzle).toContain('gridlength', 'row', 'col', 'sudoku', 'solution', 'level', 'id');
       }))
   })
 });
@@ -204,13 +180,7 @@ describe('Test suite: receive correct response from database for a 9x9 puzzle, d
     return (res = await request(server)
       .get('/puzzle/9x9/medium')
       .then(res => {
-        expect(puzzle).toContain('gridlength');
-        expect(puzzle).toContain('row');
-        expect(puzzle).toContain('col');
-        expect(puzzle).toContain('sudoku');
-        expect(puzzle).toContain('solution');
-        expect(puzzle).toContain('level');
-        expect(puzzle).toContain('id');
+        expect(puzzle).toContain('gridlength', 'row', 'col', 'sudoku', 'solution', 'level', 'id');
       }))
   })
 });
@@ -244,13 +214,7 @@ describe('Test suite: receive correct response from database for a 9x9 puzzle, d
     return (res = await request(server)
       .get('/puzzle/9x9/hard')
       .then(res => {
-        expect(puzzle).toContain('gridlength');
-        expect(puzzle).toContain('row');
-        expect(puzzle).toContain('col');
-        expect(puzzle).toContain('sudoku');
-        expect(puzzle).toContain('solution');
-        expect(puzzle).toContain('level');
-        expect(puzzle).toContain('id');
+        expect(puzzle).toContain('gridlength', 'row', 'col', 'sudoku', 'solution', 'level', 'id');
       }))
   })
 });
