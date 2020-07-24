@@ -1,41 +1,30 @@
-const superTest = require('supertest');
+const request = require('supertest');
 const server = require('../api/server');
 const db = require('../database/dbconfig.js');
 
-it('should set db env to test', function() {
-    expect(process.env.NODE_ENV).toBe("test");
-})
+describe("Test suite: using test environment, upload user's puzzle", () => {
+	beforeAll(async () => {
+		await db.raw('TRUNCATE TABLE users RESTART IDENTITY CASCADE');
+	});
 
-describe('GET', function() {
-    describe('GET endpoints are secure and return a proper response.', function() {
-        it('should return 400', function() {
-            return superTest(server).get('/user-puzzles').then(res => {
-                expect(res.status).toBe(400);
-            })
-        })
-        it('should return JSON formatted res', function() {
-            return superTest(server).get('/api/graphs').then(res => {
-                expect(res.type).toMatch("text/html");
-            })
-        })
-    })
+	afterAll(async () => {
+		db.end();
+	});
+
+	it('should set db env to test', () => {
+		expect(process.env.NODE_ENV).toBe('test');
+	});
+
+	// it('should upload a puzzle successfully to user-puzzles', async () => {
+	// 	return (res = await request(server)
+	// 		.post('/user-puzzles')
+	// 		.send({
+				
+	// 		})
+	// 		.then(res => {
+	// 			expect(res.status).toBe(201);
+	// 		}));
+	// });
+});
 
 
-})
-
-describe('POST security', function() {
-    describe('post to user-puzzles', function() {
-        it('should return 400', function() {
-
-            return superTest(server).post('/user-puzzles/1/1').then(res => {
-                expect(res.status).toBe(400);
-            })
-        })
-        it('should return JSON formatted res', function() {
-            return superTest(server).post('/user-puzzles/1/1').then(res => {
-                expect(res.type).toMatch("application/json");
-            })
-        })
-    })
-    
-})
