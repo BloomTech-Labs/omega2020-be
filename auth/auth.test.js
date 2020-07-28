@@ -9,6 +9,10 @@ describe('Test suite: register and login', () => {
 		await db.raw('TRUNCATE TABLE users RESTART IDENTITY CASCADE');
 	});
 
+	afterAll(async () => {
+		db.end();
+	});
+
 	it('should set db env to test', () => {
 		expect(process.env.NODE_ENV).toBe('test');
 	});
@@ -41,7 +45,6 @@ describe('Test suite: register and login', () => {
 			}));
 	});
 });
-
 
 // describe('add()', function() {
 //     beforeEach(async () => {
