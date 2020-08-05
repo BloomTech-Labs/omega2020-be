@@ -35,7 +35,6 @@ describe('Test suite: receive correct response from database for random puzzle',
       .get('/puzzle')
       .then(async res => {
         let jsonRes = await JSON.parse(res.text);
-        console.log(jsonRes);
         expect(jsonRes.solution).toHaveLength(81);
         expect(jsonRes.sudoku).toHaveLength(81);
       })
@@ -88,7 +87,6 @@ describe('Test suite: receive correct response from database for a 4x4 puzzle, d
       .get('/puzzle/4x4/easy')
       .then(async res => {
         let jsonRes = await JSON.parse(res.text);
-        console.log(jsonRes);
         expect(jsonRes.solution).toHaveLength(16);
         expect(jsonRes.sudoku).toHaveLength(16);
       })
@@ -134,7 +132,6 @@ describe('Test suite: receive correct response from database for a 6x6 puzzle, d
       .get('/puzzle/6x6/easy')
       .then(async res => {
         let jsonRes = await JSON.parse(res.text);
-        console.log(jsonRes);
         expect(jsonRes.solution).toHaveLength(36);
         expect(jsonRes.sudoku).toHaveLength(36);
       })
@@ -180,7 +177,6 @@ describe('Test suite: receive correct response from database for a 9x9 puzzle, d
       .get('/puzzle/9x9/easy')
       .then(async res => {
         let jsonRes = await JSON.parse(res.text);
-        console.log(jsonRes);
         expect(jsonRes.solution).toHaveLength(81);
         expect(jsonRes.sudoku).toHaveLength(81);
       })
@@ -226,7 +222,6 @@ describe('Test suite: receive correct response from database for a 9x9 puzzle, d
       .get('/puzzle/9x9/medium')
       .then(async res => {
         let jsonRes = await JSON.parse(res.text);
-        console.log(jsonRes);
         expect(jsonRes.solution).toHaveLength(81);
         expect(jsonRes.sudoku).toHaveLength(81);
       })
@@ -272,7 +267,6 @@ describe('Test suite: receive correct response from database for a 9x9 puzzle, d
       .get('/puzzle/9x9/hard')
       .then(async res => {
         let jsonRes = await JSON.parse(res.text);
-        console.log(jsonRes);
         expect(jsonRes.solution).toHaveLength(81);
         expect(jsonRes.sudoku).toHaveLength(81);
       })
