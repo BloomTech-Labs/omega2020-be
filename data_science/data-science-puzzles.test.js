@@ -258,7 +258,7 @@ describe('Test suite: receive correct response from database for a 9x9 puzzle, d
     db.end();
   });
 
-  it('returns an easy 9x9 puzzle with status 200', async () => {
+  it('returns a hard 9x9 puzzle with status 200', async () => {
     return (res = await request(server)
       .get('/puzzle/9x9/hard')
       .then(res => {
@@ -266,6 +266,18 @@ describe('Test suite: receive correct response from database for a 9x9 puzzle, d
         expect(res.type).toBe('application/json');
       }))
   })
+
+  it('returns an object containing the correct number of characters', async () => {
+    return (res = await request(server)
+      .get('/puzzle/9x9/hard')
+      .then(async res => {
+        let jsonRes = await JSON.parse(res.text);
+        console.log(jsonRes);
+        expect(jsonRes.solution).toHaveLength(81);
+        expect(jsonRes.sudoku).toHaveLength(81);
+      })
+    );
+  });
 
   it('returns a puzzle object with "gridlength", "row", "col", "sudoku", "solution", "level", and "id"', async () => {
     const puzzle = [
