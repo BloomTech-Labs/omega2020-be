@@ -2,27 +2,7 @@ const router = require('express').Router();
 const restricted = require('../auth/restricted-middleware.js')
 const UserPuzzles = require('./user-puzzles-model')
 
-// router.get("/serfg", async (req, res) => {
-//     // console.log("REQ1", req)
-//     const email = req.decodedJwt.email;
-//     console.log("USER EMAIL", email)
-//     try {
-//     //   console.log("REQ2", req)
-//       const allUsers = await UserPuzzles.findPuzzles();
-//             // console.log("REQ2", req)
-
-//       console.log("ALL USERS", allUsers)
-//       res.status(200).json(allUsers);
-//     // console.log("REQ2", req)
-
-      
-//     } catch (err) {
-//       res.status(500).json({ msg: "erraaaaa"  });
-//     }
-
-// })
-
-router.get('/', restricted, (req, res) => {
+router.get('/user-puzzles', restricted, (req, res) => {
   const email = req.decodedJwt.email;
   UserPuzzles
   .findPuzzles(email)
@@ -33,7 +13,7 @@ router.get('/', restricted, (req, res) => {
 })
 
 
-router.post('/:puzzleId', restricted, async (req, res) => {
+router.post('/user-puzzles/:puzzleId', restricted, async (req, res) => {
   try {
     console.log("PARAMS",req.params)
     const { puzzleId } = req.params;
@@ -59,6 +39,26 @@ router.post('/:puzzleId', restricted, async (req, res) => {
     }
 })
 
+// router.get("/serfg", async (req, res) => {
+//     // console.log("REQ1", req)
+//     const email = req.decodedJwt.email;
+//     console.log("USER EMAIL", email)
+//     try {
+//     //   console.log("REQ2", req)
+//       const allUsers = await UserPuzzles.findPuzzles();
+//             // console.log("REQ2", req)
+
+//       console.log("ALL USERS", allUsers)
+//       res.status(200).json(allUsers);
+//     // console.log("REQ2", req)
+
+
+//     } catch (err) {
+//       res.status(500).json({ msg: "erraaaaa"  });
+//     }
+
+// })
+
 // router.post('/puzzles', restricted, (req, res) => {
 //     const userId = req.decodedJwt.userId;
 //     UserPuzzles
@@ -68,8 +68,9 @@ router.post('/:puzzleId', restricted, async (req, res) => {
 //     })
 //     .catch(err => res.send(err))
 // })
-//preparing an endpoint to resave an existing saved puzzle
 
+
+//preparing an endpoint to resave an existing saved puzzle
 // router.post('/:userId/:puzzleId', restricted, (req, res) => {
 //     const { userId, puzzleId } = req.params
 //     const email = req.decodedJwt.email
