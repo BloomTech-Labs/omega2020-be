@@ -5,7 +5,7 @@ const Users = require('../users/users-model.js');
 console.log(Users, 'users-model');
 const jwt = require('jsonwebtoken');
 
-router.post('/register', (req, res) => {
+router.post('/auth/register', (req, res) => {
 	console.log('Register ');
 	// console.log(req)
 	let user = req.body;
@@ -23,7 +23,7 @@ router.post('/register', (req, res) => {
 		});
 });
 
-router.post('/login', (req, res) => {
+router.post('/auth/login', (req, res) => {
 	let { email, password } = req.body;
 
 	Users.findBy({ email })
