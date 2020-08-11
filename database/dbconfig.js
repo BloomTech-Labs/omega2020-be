@@ -1,3 +1,3 @@
-const dbEngine = process.env.DB || 'development';
+const dbEngine = process.env.DB || 'production';
 const config = require('../knexfile')[dbEngine];
 module.exports = require('knex')(config);
