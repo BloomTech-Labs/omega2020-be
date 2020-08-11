@@ -5,10 +5,10 @@ const Users = require('../users/users-model.js');
 console.log(Users, 'users-model');
 const jwt = require('jsonwebtoken');
 
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
 	console.log('Register ');
 	// console.log(req)
-	let user = req.body;
+	let user = await req.body;
 	const hash = bcrypt.hashSync(user.password, 10);
 	user.password = hash;
 

@@ -38,6 +38,7 @@ module.exports = {
       user: process.env.PRO_USER,
       password: process.env.PRO_PASS,
       database: process.env.PRO_DB,
+      ssl:true
     },
     migrations: {
       directory: './database/migrations',
