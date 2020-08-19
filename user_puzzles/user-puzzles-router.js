@@ -5,47 +5,51 @@ const UserPuzzles = require('./user-puzzles-model')
 router.get('/', restricted, (req, res) => {
   const email = req.decodedJwt.email;
   UserPuzzles
-  .findPuzzles(email)
+  .findUserPuzzles(email)
   .then(puzzles => {
       res.json(puzzles)
   })
   .catch(err => res.send(err))
 })
 
+router.post('/', restricted, (req, res) => {
+  const userPuzzleData = req.body;
+  const email = req.decodedJwt.email;
 
-router.post('/:puzzleId', restricted, async (req, res) => {
-  try {
-    const { puzzleId } = req.params;
-    const email = req.decodedJwt.email;
-    const puzzleStr = req.body;
-    const original = req.body.original;
+  UserPuzzles.saveUserPuzzle(userPuzzleData)
+    .then(userPuzzle => {
+      res.status(201).json(userPuzzle);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ message: 'Failed to save user puzzle' })
+    });
+});
 
-    await UserPuzzles
-    .savePuzzle(puzzleStr, email, puzzleId, original)
-    .then(puzzle => {
-        res.status(200).json(puzzle)
-        console.log(email)
-      })
-    } catch (err) {
-      res.status(500).json({ msg: "internal server error"  });
-      console.log(err)
-    }
-})
+// router.post('/', restricted, async (req, res) => {
+//   try {
+//     const { puzzleId } = req.params;
+//     const email = req.decodedJwt.email;
+//     const puzzleStr = req.body;
+//     const original = req.body.original;
+
+//     await UserPuzzles
+//     .savePuzzle(puzzleStr, email, puzzleId, original)
+//     .then(puzzle => {
+//         res.status(200).json(puzzle)
+//         console.log(email)
+//       })
+//     } catch (err) {
+//       res.status(500).json({ msg: "internal server error"  });
+//       console.log(err)
+//     }
+// })
 
 // router.get("/serfg", async (req, res) => {
-//     // console.log("REQ1", req)
 //     const email = req.decodedJwt.email;
-//     console.log("USER EMAIL", email)
 //     try {
-//     //   console.log("REQ2", req)
-//       const allUsers = await UserPuzzles.findPuzzles();
-//             // console.log("REQ2", req)
-
-//       console.log("ALL USERS", allUsers)
+//       const allUsers = await UserPuzzles.findUserPuzzles();
 //       res.status(200).json(allUsers);
-//     // console.log("REQ2", req)
-
-
 //     } catch (err) {
 //       res.status(500).json({ msg: "erraaaaa"  });
 //     }

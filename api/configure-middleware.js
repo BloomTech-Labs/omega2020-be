@@ -4,22 +4,22 @@ const helmet = require('helmet');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-// Set up a whitelist and check against it:
-const whitelist = ['https://www.sudomega.com']
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
+// // Set up a whitelist and check against it:
+// const whitelist = ['https://www.sudomega.com']
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true)
+//     } else {
+//       callback(new Error('Not allowed by CORS'))
+//     }
+//   }
+// }
 
 module.exports = server => {
   server.use(express.json());  
   server.use(cors());
-	server.use(cors(corsOptions));
+	// server.use(cors(corsOptions));
   server.use(helmet());
   // server.use(morgan('dev'));
     server.use(bodyParser());

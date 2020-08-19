@@ -1,43 +1,57 @@
 const db = require('../database/dbconfig');
 
-module.exports = {
-	findPuzzles,
-	savePuzzle,
-	findUserPuzzleByID,
-	getUserPuzzles
-};
-
-function findPuzzles(email) {
+function findUserPuzzles(email) {
 	return db('user_puzzles')
 		.where({ email: email })
 		.orderBy('id', 'DESC')
-		.first();
+		.select();
 }
 
-function getUserPuzzles() {
-	const thang = db('user_puzzles').where({ data: '4' });
-	return thang;
-}
+async function saveUserPuzzle(userPuzzle) {
+	const [id] = await db('user_puzzles').insert(userPuzzle)
+	return db('user_puzzles')
+		.where({ id })
+		.where({ email:email })
+		.first()
+};
 
-async function savePuzzle(puzzle, email, puzzleId, original) {
-	await db('user_puzzles')
-		.insert({
-			...puzzle,
-			email: email,
-			puzzleDs: puzzleId,
-			original: original
-		})
-		.catch((err) => {
-			console.log(err);
-			throw err;
-		});
-	const savedPuzzle = {
-		...puzzle,
-		email,
-		puzzleId,
-		original
-	};
-	return savedPuzzle;
+module.exports = {
+	findUserPuzzles,
+	saveUserPuzzle,
+	// findUserPuzzleByID,
+	// getUserPuzzles
+};
+
+// async function savePuzzle(puzzle, email, puzzleId, original) {
+// 	await db('user_puzzles')
+// 		.insert({
+// 			...puzzle,
+// 			email: email,
+// 			puzzleDs: puzzleId,
+// 			original: original
+// 		})
+// 		.catch((err) => {
+// 			console.log(err);
+// 			throw err;
+// 		});
+// 	const savedPuzzle = {
+// 		...puzzle,
+// 		email,
+// 		puzzleId,
+// 		original
+// 	};
+// 	return savedPuzzle;
+
+// function findUserPuzzleByID(id) {
+// 	return db('user_puzzles').where({ puzzleID }).first();
+// }
+
+	// function getUserPuzzles() {
+	// 	const thang = db('user_puzzles').where({ data: '4' });
+	// 	return thang;
+	// }
+
+
 	// async function verify() {
 	//  const results = await db('user_puzzles as p')
 	// .join('puzzles as z', 'z.id', 'p.puzzle_id')
@@ -54,8 +68,5 @@ async function savePuzzle(puzzle, email, puzzleId, original) {
 
 	// }
 	// return await verify()
-}
+// }
 
-function findUserPuzzleByID(email) {
-	return db('puzzles as p').select('p.*').where({ puzzleID });
-}
