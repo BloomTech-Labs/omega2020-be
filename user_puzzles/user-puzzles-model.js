@@ -15,18 +15,11 @@ function findPuzzles(email) {
 }
 
 function getUserPuzzles() {
-	console.log('XXXXXXXXXX');
 	const thang = db('user_puzzles').where({ data: '4' });
-	console.log(process.env);
-	console.log('THANG1', thang);
 	return thang;
 }
 
 async function savePuzzle(puzzle, email, puzzleId, original) {
-	console.log('SAVEPUZZLE', puzzle);
-	console.log(email);
-	console.log(puzzleId);
-
 	await db('user_puzzles')
 		.insert({
 			...puzzle,
@@ -34,9 +27,9 @@ async function savePuzzle(puzzle, email, puzzleId, original) {
 			puzzleDs: puzzleId,
 			original: original
 		})
-		.catch((e) => {
-			console.log(e);
-			throw e;
+		.catch((err) => {
+			console.log(err);
+			throw err;
 		});
 	const savedPuzzle = {
 		...puzzle,
