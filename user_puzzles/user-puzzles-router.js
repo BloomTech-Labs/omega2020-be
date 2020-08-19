@@ -26,6 +26,9 @@ router.post('/', restricted, (req, res) => {
     });
 });
 
+module.exports = router;
+
+
 // router.post('/', restricted, async (req, res) => {
 //   try {
 //     const { puzzleId } = req.params;
@@ -81,4 +84,4 @@ router.post('/', restricted, (req, res) => {
 // })
 
 
-module.exports = router;
+
