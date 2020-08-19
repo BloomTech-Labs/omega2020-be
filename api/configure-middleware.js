@@ -1,7 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 // const morgan = require('morgan');
-// const cors = require('cors');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
 // Set up a whitelist and check against it:
@@ -18,7 +18,7 @@ const corsOptions = {
 
 module.exports = server => {
   server.use(express.json());  
-  // server.use(cors());
+  server.use(cors());
 	server.use(cors(corsOptions));
   server.use(helmet());
   // server.use(morgan('dev'));
