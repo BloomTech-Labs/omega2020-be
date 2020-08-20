@@ -7,13 +7,34 @@ function findUserPuzzles(email) {
 		.select();
 }
 
-async function saveUserPuzzle(userPuzzle) {
-	const [id] = await db('user_puzzles').insert(userPuzzle)
-	return db('user_puzzles')
-		.where({ id })
-		.where({ email:email })
-		.first()
-};
+async function saveUserPuzzle(puzzle, email, puzzleId, original) {
+	await db('user_puzzles')
+		.insert({
+			...puzzle,
+			email: email,
+			puzzleDs: puzzleId,
+			original: original
+		})
+		.catch((err) => {
+			console.log(err);
+			throw err;
+		});
+	const savedPuzzle = {
+		...puzzle,
+		email,
+		puzzleId,
+		original
+	};
+	return savedPuzzle;
+}
+
+// async function saveUserPuzzle(userPuzzle) {
+// 	const [email] = await db('user_puzzles').insert(userPuzzle)
+// 	return db('user_puzzles')
+// 		// .where({ id })
+// 		.where({ email: email })
+// 		.first()
+// };
 
 module.exports = {
 	findUserPuzzles,
@@ -22,25 +43,7 @@ module.exports = {
 	// getUserPuzzles
 };
 
-// async function savePuzzle(puzzle, email, puzzleId, original) {
-// 	await db('user_puzzles')
-// 		.insert({
-// 			...puzzle,
-// 			email: email,
-// 			puzzleDs: puzzleId,
-// 			original: original
-// 		})
-// 		.catch((err) => {
-// 			console.log(err);
-// 			throw err;
-// 		});
-// 	const savedPuzzle = {
-// 		...puzzle,
-// 		email,
-// 		puzzleId,
-// 		original
-// 	};
-// 	return savedPuzzle;
+
 
 // function findUserPuzzleByID(id) {
 // 	return db('user_puzzles').where({ puzzleID }).first();
