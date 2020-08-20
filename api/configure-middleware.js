@@ -4,7 +4,9 @@ const helmet = require('helmet');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-// // Set up a whitelist and check against it:
+// Unsuccessful attempt to correct cors error
+
+// Set up a whitelist and check against it:
 // const whitelist = ['https://www.sudomega.com']
 // const corsOptions = {
 //   origin: function (origin, callback) {
