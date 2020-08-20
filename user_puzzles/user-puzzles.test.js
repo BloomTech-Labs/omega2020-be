@@ -15,16 +15,16 @@ describe("Test suite: using test environment, upload user's puzzle", () => {
 		expect(process.env.NODE_ENV).toBe('test');
 	});
 
-	// it('should upload a puzzle successfully to user-puzzles', async () => {
-	// 	return (res = await request(server)
-	// 		.post('/user-puzzles')
-	// 		.send({
+	it('should upload a puzzle successfully to user-puzzles', async () => {
+		return (res = await request(server)
+			.post('/user-puzzles')
+			.send({
 				
-	// 		})
-	// 		.then(res => {
-	// 			expect(res.status).toBe(201);
-	// 		}));
-	// });
+			})
+			.then(res => {
+				expect(res.status).toBe(201);
+			}));
+	});
 });
 
 
