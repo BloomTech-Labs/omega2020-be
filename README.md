@@ -1,21 +1,76 @@
-# Omega2020 - Backend Documentation
+<h1 align="center">Welcome to Sudomega</h1>
+<p align="center">The online sudoku website.</p>
+
+<div align="center">
+   
 [![Maintainability](https://api.codeclimate.com/v1/badges/bd4c771bb16203fb57de/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/omega2020-be/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/bd4c771bb16203fb57de/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/omega2020-be/test_coverage)
+  [![Website](https://img.shields.io/website?color=green&style=flat-square&url=https://sudomega.com/)](https://sudomega.com/)
 
+</div>
 
-This is a full list of the endpoints needed to connect to the Omega2020 API.
+<p align="center"> 🛠 This is home to the backend repository for Sudomega, an online sudoku app geared towards sudoku lovers and people who want to improve their sudoku skills. Learn how to play, upload your own sudoku games, and compete with friends :) </p>
 
-This file is subject to change, and as such **should be checked from time to time**.
+<br/>
 
-## Base Url
+---
 
-`https://omega2020.herokuapp.com/`
+This repo hosts:
 
-Login with Omega 2020 google account
+- The [Sudomega](#) backend code
+- Important links
 
-## Frontend Repository
+:desktop_computer: Deployed URL: [Sudomega.com](https://www.sudomega.com/)
 
-`https://github.com/Lambda-School-Labs/omega2020-fe`
+## Contributors
+
+🙌 This project exists thanks to all the people who contribute. [[Contribute](#)].
+
+> LABSPT11
+
+|                                            [Jessica Dosseh](https://github.com/JessicaDosseh)                                             |                           [Alexis Anderson](https://github.com/#)                           |                           [Carlos Turcios](https://github.com/#)                            |                            [Tara Sherman](https://github.com/#)                             |                           [Vincent Adeniji](https://github.com/#)                           |
+| :---------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------: |
+|                  [<img src="assets/user-icon.png" width = "100" border-radius="50%"/>](https://github.com/JessicaDosseh)                  | [<img src="assets/user-icon.png" width = "100" border-radius="50%"/>](https://github.com/#) | [<img src="assets/user-icon.png" width = "100" border-radius="50%"/>](https://github.com/#) | [<img src="assets/user-icon.png" width = "100" border-radius="50%"/>](https://github.com/#) | [<img src="assets/user-icon.png" width = "100" border-radius="50%"/>](https://github.com/#) |
+|                        [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JessicaDosseh)                         |       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/#)        |       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/#)        |       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/#)        |       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/#)        |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jessica-dosseh-452a10173/) |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](#)    |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](#)    |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](#)    |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](#)    | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](#) |
+
+---
+
+# Getting Started
+
+## Project Set Up
+
+- [ ] Create a forked copy of this project.
+- [ ] Clone your OWN version of the repository in your terminal.
+- [ ] `git pull` to make sure you are uptodate
+- [ ] `git checkout -b new-branch-name`
+- [ ] Run `yarn` to install node_module.
+- [ ] Run `yarn start` to start.
+
+:rocket: DO your magic!
+
+---
+
+# Development Info
+
+## Tech Stack
+
+> TBD
+
+### API Documentation
+
+> URL
+
+> > **Base URL** > > `https://omega2020.herokuapp.com/`
+
+> > **Frontend Repository** > > `https://github.com/Lambda-School-Labs/omega2020-fe`
+
+> > **DS Puzzles API**
+> > `postgres://postgres:omega2020database@omega2020.cbydc0au6atn.us-east-2.rds.amazonaws.com:5432/postgres`
+
+> > **DS Computer Vision (Upload) API** > > `https://api.lambda-omega2020.com/demo_file`
+
+> > **DS Repository** > > `https://github.com/Lambda-School-Labs/omega2020-ds`
 
 ## Authentication
 
@@ -71,46 +126,56 @@ Login with Omega 2020 google account
 ```
 ### GET random easy 9x9 Puzzle Data
 
-**GET** to `/puzzle/gentle`
+**GET** to `/puzzle/9x9/easy`
 
 - Responds with one randomly selected easy puzzle from the data science database.
 
 ```
 {
-  "sudoku": "....3...9.14...6.7..6...8.......9...5..782......6.......3......8.7...2562...5.1..",
-  "solution": "785136429914825637326974815632549781591782364478613592153267948847391256269458173",
-  "level": "Gentle",
-  "id": 3726
+  "gridlength": "9",
+  "row": "3",
+  "col": "3",
+  "sudoku": "......3...14...8.....684..7....9..5.2.7...9.3.96.1..2.4..973.....5...67...9......",
+  "solution": "678159342914237865523684197841392756257846913396715428462973581135428679789561234",
+  "level": "Easy",
+  "id": 2015
 }
 ```
 ### GET random moderate 9x9 Puzzle Data
 
-**GET** to `/puzzle/moderate`
+**GET** to `/puzzle/medium`
 
-- Responds with one randomly selected moderate puzzle from the data science database.
+- Responds with one randomly selected medium puzzle from the data science database.
 
 ```
 {
-  "sudoku": "8...1..37...9...5..29.6....1...2.376..........57.9...4....7.48..1...4...78..3...1",
-  "solution": "846512937371948652529763148198425376463187295257396814635271489912854763784639521",
-  "level": "Moderate",
-  "id": 2568
+  "gridlength": "9",
+  "row": "3",
+  "col": "3",
+  "sudoku": "....2.....4.6..79.2.1...4.8..41.23......6......87.49..6.2...5.1.97..6.2.....3....",
+  "solution": "976428135843615792251379468564192387719863254328754916632987541197546823485231679",
+  "level": "Medium",
+  "id": 4504
 }
 ```
 ### GET random hard 9x9 Puzzle Data
 
-**GET** to `/puzzle/tough`
+**GET** to `/puzzle/hard`
 
 - Responds with one randomly selected hard puzzle from the data science database.
 
 ```
 {
-  "sudoku": "......12...64..3....3..87..8.........4..5..6....3.1..8..85..2....5..26...27....1.",
-  "solution": "584739126716425389293618754879246531341857962652391478168574293935182647427963815",
-  "level": "Tough",
-  "id": 869
+  "gridlength": "9",
+  "row": "3",
+  "col": "3",
+  "sudoku": "..91..3...8.....4.2.58.6.1...3.....5.9.2.5.8.5.....9...7.6.85.4.6.....2...8..96..",
+  "solution": "649172358781953246235846719823791465497265183516384972372618594964537821158429637",
+  "level": "Hard",
+  "id": 3746
 }
 ```
+<<<<<<< Updated upstream
 ### GET random very hard 9x9 Puzzle Data
 
 **GET** to `/puzzle/diabolical`
@@ -126,19 +191,26 @@ Login with Omega 2020 google account
 }
 ```
 
+```
+=======
 
+>>>>>>> Stashed changes
 ### GET random easy 4x4 Puzzle Data
 
 **GET** to `/puzzle/4x4/easy`
 
 - Responds with one randomly selected easy 4x4 puzzle from the data science database.
+- Currently only easy 4x4 puzzles are available, although routes are already set up for `/puzzle/4x4/medium` and `/puzzle/4x4/hard`.
 
 ```
 {
-  "sudoku": "4.21.1.3.4.2.23.",
-  "solution": "4321214334121234",
+  "gridlength": "4",
+  "row": "2",
+  "col": "2",
+  "sudoku": "1..3..1224..3.2.",
+  "solution": "1243431224313124",
   "level": "Easy",
-  "id": 772438
+  "id": 589692
 }
 ```
 
@@ -147,6 +219,7 @@ Login with Omega 2020 google account
 **GET** to `/puzzle/6x6/easy`
 
 - Responds with one randomly selected easy 6x6 puzzle from the data science database.
+- Currently only easy 4x4 puzzles are available, although routes are already set up for `/puzzle/6x6/medium` and `/puzzle/6x6/hard`.
 
 ```
 {
@@ -157,50 +230,77 @@ Login with Omega 2020 google account
 }
 ```
 
-### GET Puzzle Data by Id
-
-**GET** to `/puzzle/:id`
-
-- Responds with a puzzle with the matching id.
-
-```
-{
-  "sudoku": "....7...1.7..3..8..63...47.7..986..4.........9..123..7.27...13..9..5..2.6...1....",
-  "solution": "289674351574231986163598472732986514816745293945123867427869135391457628658312749",
-  "level": "Diabolical",
-  "id": 5029
-}
-```
-
 ### GET Puzzle Data by User
 
 **GET** to `/user-puzzles`
 
-- Responds with most recently saved puzzle data from the logged-in user only. This can only be accessed if the user is logged in.
+- Responds with all saved puzzle data from the logged-in user only. This can only be accessed if the user is logged in.
 
 ```
-{
-  "time": null,
-  "difficulty": null,
-  "original": ".1.....7...5.1.6..6.7...8.31..9.4..7.........9..8.6...8.4...7.1..6.7.2...3.....5.",
-  "solved": "319648572285713649647592813158924367462137985973856124824365791596471238731289456",
-  "data": ".1..1..7..15.1.6..6.7.1.8.31..9.4.17.1..1.1..9..8.6.1.8.4...7.1.1617.2...3.1...5.",
-  "id": 143,
-  "user_id": null,
-  "puzzleDs": 142,
-  "email": "sully"
-}
+[
+  {
+    "time": null,
+    "difficulty": null,
+    "original": null,
+    "solved": null,
+    "data": ".48....7...........732.651.7..4.5...3...7...8...8.3..5.541.736...........1....25.",
+    "id": 13,
+    "user_id": null,
+    "puzzleDs": null,
+    "email": "janedoe@mail.com"
+  },
+  {
+    "time": null,
+    "difficulty": null,
+    "original": null,
+    "solved": null,
+    "data": ".1...412.....234",
+    "id": 12,
+    "user_id": null,
+    "puzzleDs": null,
+    "email": "janedoe@mail.com"
+  },
+  {
+    "time": null,
+    "difficulty": null,
+    "original": null,
+    "solved": null,
+    "data": ".1...412.....234",
+    "id": 11,
+    "user_id": null,
+    "puzzleDs": null,
+    "email": "janedoe@mail.com"
+  },
+  {
+    "time": null,
+    "difficulty": null,
+    "original": null,
+    "solved": null,
+    "data": ".1...412.....234",
+    "id": 10,
+    "user_id": null,
+    "puzzleDs": null,
+    "email": "janedoe@mail.com"
+  }
 ```
 
 ### POST User Puzzle Data
 
-**POST** to `/user-puzzles/:puzzleId`
+**POST** to `/user-puzzles`
 
-- Saves a puzzle under the logged in users email with the id of the puzzle.
-- Currently any uploaded and then saved puzzle on the frontend is saved with a puzzle id of 100.
+- Saves a puzzle to the user's email. User must be logged in to save puzzle data.
+- The data field cannot be NULL; all other fields are not required to save a puzzle.
 
+- Request body:
+```
+{ 
+	"data": ".48....7...........732.651.7..4.5...3...7...8...8.3..5.541.736...........1....25."
+}
+```
+- Returns
 ```
 {
-	"data": ".48....7...........732.651.7..4.5...3...7...8...8.3..5.541.736...........1....25."
+  "data": ".48....7...........732.651.7..4.5...3...7...8...8.3..5.541.736...........1....25.",
+  "email": "janedoe@mail.com"
 }
 ```
