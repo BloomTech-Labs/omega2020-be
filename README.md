@@ -175,26 +175,7 @@ This repo hosts:
   "id": 3746
 }
 ```
-<<<<<<< Updated upstream
-### GET random very hard 9x9 Puzzle Data
 
-**GET** to `/puzzle/diabolical`
-
-- Responds with one randomly selected very hard puzzle from the data science database.
-
-```
-{
-  "sudoku": "....7...1.7..3..8..63...47.7..986..4.........9..123..7.27...13..9..5..2.6...1....",
-  "solution": "289674351574231986163598472732986514816745293945123867427869135391457628658312749",
-  "level": "Diabolical",
-  "id": 5029
-}
-```
-
-```
-=======
-
->>>>>>> Stashed changes
 ### GET random easy 4x4 Puzzle Data
 
 **GET** to `/puzzle/4x4/easy`
